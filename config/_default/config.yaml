@@ -4,7 +4,7 @@
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
 title: Pietro Totis # Website name
-baseURL: 'https://people.cs.kuleuven.be/~pietro.totis/' # Website URL
+baseURL: 'https://pietrototis.github.io/' # Website URL
 
 ############################
 ## LANGUAGE
