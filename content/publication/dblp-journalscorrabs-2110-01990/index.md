@@ -1,7 +1,7 @@
 ---
 # Documentation: https://wowchemy.com/docs/managing-content/
 
-title: 'smProbLog: Stable Model Semantics in ProbLog and its Applications in Argumentation'
+title: 'smProbLog: Stable Model Semantics in ProbLog for Probabilistic Argumentation'
 subtitle: ''
 summary: ''
 authors:
@@ -30,19 +30,21 @@ image:
 #   Otherwise, set `projects = []`.
 projects: []
 publishDate: '2022-11-04T11:29:20.115822Z'
+doi: 10.1017/S147106842300008X
 publication_types:
 - '2'
 summary: "We model beliefs in argumentation problems with probabilistic logic programs and show that traditional probabilistic logic programming (PLP) systems cannot reason on this type of programs. We thus present smProblog, a novel PLP system based on ProbLog, where inference and learning over such probabilistic argumentation problems are possible."
 
-abstract: 'We introduce SMProbLog, a probabilistic logic programming framework based on the probabilistic logic programming language ProbLog. Probabilistic logic programs are logic programs in which some of the facts are annotated
-    with probabilities. The common assumption in probabilistic logic programming is that probabilistic facts fully capture the uncertainty in the domain under investigation. Probabilistic argumentation problems, however, represent an interesting practical application where this is not always the case. SMProbLog semantics supports probabilistic logic programs where a choice of probabilistic facts does not yield a unique interpretation of the logical atoms in the program. We implement the corresponding algorithms for both inference and learning tasks. The new semantics is essential to reason about epistemic probabilistic argumentation problems: we encode them as SMProbLog programs, and show how the implementation of SMProbLog can be used as a system for inference and learning over probabilistic argumentation problems. We evaluate our approach with experiments analyzing the computational cost of the proposed algorithms and their application to a dataset of argumentation problems. Therefore, the key contributions of this paper are: a more general semantics for functor-free ProbLog programs, its implementation into a probabilistic programming framework for both inference and parameter learning, and a novel approach to probabilistic argumentation problems based on such framework.'
-publication: '*CoRR*'
+abstract: 'Argumentation problems are concerned with determining the acceptability of a set of arguments from their relational structure. When the available information is uncertain, probabilistic argumentation frameworks provide modeling tools to account for it. The first contribution of this paper is a novel interpretation of probabilistic argumentation frameworks as probabilistic logic programs. Probabilistic logic programs are logic programs in which some of the facts are annotated with probabilities. We show that the programs representing probabilistic argumentation frameworks do not satisfy a common assumption in probabilistic logic programming (PLP) semantics, which is, that probabilistic facts fully capture the uncertainty in the domain under investigation. The second contribution of this paper is then a novel PLP semantics for programs where a choice of probabilistic facts does not uniquely determine the truth assignment of the logical atoms. The third contribution of this paper is the implementation of a PLP system supporting this semantics: smProbLog. smProbLog is a novel PLP framework based on the PLP language ProbLog. smProbLog supports many inference and learning tasks typical of PLP, which, together with our first contribution, provide novel reasoning tools for probabilistic argumentation. We evaluate our approach with experiments analyzing the computational cost of the proposed algorithms and their application to a dataset of argumentation problems.'
+
+publication: '*Theory and Practice of Logic Programming*'
+publication_short: "*TPLP*"
 links:
 - name: URL
-  url: https://arxiv.org/abs/2110.01990
+  url: https://www.cambridge.org/core/journals/theory-and-practice-of-logic-programming/article/smproblog-stable-model-semantics-in-problog-for-probabilistic-argumentation/4C4DAF1C4E5BADA746E4E2F1694AC0A7
 
 
-url_pdf: https://arxiv.org/pdf/2110.01990.pdf
+url_pdf: https://arxiv.org/pdf/2304.00879.pdf
 url_code: https://github.com/PietroTotis/smProblog
 url_dataset:
 url_poster:
@@ -52,7 +54,7 @@ url_source:
 url_video: 
 
 ---
-<!-- 
+ 
 ### Problem
 
 In this paper we propose a new approach to probabilistic argumentation problems based on probabilistic logic programming (PLP).
@@ -184,9 +186,8 @@ Conditional probabilities, expressed by means of *evidence*, can be queried to s
 Most probable explanation (MPE) queries return the most probable possible world where the given evidence holds. 
 They can thus be used to find the set of beliefs which contribute the most to believing one or more arguments.
 
-Finally, *learning from interpretations* (lfi) 
 [^1]: [T. Sato, "A Statistical Learning Method for Logic Programs with Distribution Semantics", ICLP 1995.](https://rjida.meijo-u.ac.jp/reference/ICLP95.pdf)
 [^2]: [A. Hunter, "A probabilistic approach to modelling uncertain logical arguments", Int. J. Approx. Reasoning, 2013](http://www0.cs.ucl.ac.uk/staff/a.hunter/papers/ijar12.pdf)
 [^3]: [J. Pearl, "Probabilistic reasoning in intelligent systems: networks of plausible inference", Rev. 2. ed. Morgan Kaufmann, 2009](https://dl.acm.org/doi/10.5555/534975).
 [^4]: [N. Nilsson, "Understanding Beliefs.", The MIT Press Essential Knowledge series. MIT Press, 2014](https://mitpress.mit.edu/9780262526432/understanding-beliefs/)
- -->
+

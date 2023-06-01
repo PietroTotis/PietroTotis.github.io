@@ -20,8 +20,13 @@ publishDate: 2022-11-09T15:45:40+01:00
 publication_types: ["2"]
 
 # Publication name and optional abbreviated publication name.
-publication: "*Accepted for publication at Journal of Artificial Intelligence Research*"
+publication: "*Journal of Artificial Intelligence Research*"
 publication_short: "*JAIR*"
+doi: 10.1613/jair.1.14062 
+links:
+- name: URL
+  url: https://www.jair.org/index.php/jair/article/view/14062
+
 
 abstract: "Combinatorics math problems are often used as a benchmark to test human cognitive and logical problem-solving skills. These problems are concerned with counting the number of solutions that exist in a specific scenario that is sketched in natural language. Humans are adept at solving such problems as they can identify commonly occurring structures in the questions for which a closed-form formula exists for computing the answer. These formulas exploit the exchangeability of objects and symmetries to avoid a brute-force enumeration of all possible solutions. Unfortunately, current AI approaches are still unable to solve combinatorial problems in this way. This paper aims to fill this gap by developing novel AI techniques for representing and solving such problems. It makes the following five contributions. First, we identify a class of combinatorics math problems which traditional lifted counting techniques fail to model or solve efficiently. Second, we propose a novel declarative language for this class of problems. Third, we propose novel
 lifted solving algorithms bridging probabilistic inference techniques and constraint programming. Fourth, we implement them in a lifted solver that solves efficiently the class of problems under investigation. Finally, we evaluate our contributions on a real-world combinatorics math problems dataset and synthetic benchmarks."
@@ -41,7 +46,7 @@ featured: true
 #   icon_pack: fab
 #   icon: twitter
 
-url_pdf: 
+url_pdf: https://www.jair.org/index.php/jair/article/view/14062/26884
 url_code: https://github.com/PietroTotis/CoSo
 url_dataset:
 url_poster:

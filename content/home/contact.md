@@ -25,19 +25,19 @@ content:
   #     captcha: false
 
   # Contact details (edit or remove options as required)
-  email: https://www.kuleuven.be/wieiswie/en/person/00126634
-  email_name: KU Leuven contact page
+  email: mailto:contact.tfim7@simplelogin.com
+  email_name: Mail
   # phone: 888 888 88 88
   address:
-    street: Celestijnenlaan 200a
-    city: Leuven
-    postcode: '3001'
-    country: Belgium
-    country_code: BE
+    street: P.º de la Castellana, 31, Edificio Pirámide 
+    city: Madrid
+    postcode: '28046'
+    country: Spagna
+    country_code: ES
   coordinates:
-    latitude: '50.864181'
-    longitude: '4.678838'
-  directions: Enter Building A and take the stairs to Office 02.151 on Floor 2
+    latitude: '40.43149'
+    longitude: '-3.68959'
+  directions: 
   # contact_links:
   #   - icon: twitter
   #     icon_pack: fab
