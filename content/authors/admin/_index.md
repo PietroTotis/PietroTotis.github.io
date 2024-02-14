@@ -79,7 +79,7 @@ email: ''
 # Highlight the author in author lists? (true/false)
 highlight_name: true
 ---
-I am currently part of the AI Research team at J.P. Morgan as Senior Research Associate.
+I am currently part of the AI Research team at JP Morgan Chase & Co. as Senior Research Associate.
 I obtained my PhD in Computer Science at the DTAI Lab of the Department of Computer Science of [KU Leuven](https://www.kuleuven.be/english/), under the supervision of professor [Luc De Raedt](https://people.cs.kuleuven.be/~luc.deraedt/). My research was also supervised by professors [Jesse Davis](https://people.cs.kuleuven.be/~jesse.davis/) and [Angelika Kimmig](https://www.cardiff.ac.uk/people/view/634329-kimmig-angelika) (DTAI Lab).
 
 My main PhD project was [Solving Combinatorial and Probabilistic Problems in Natural Language](https://www.kuleuven.be/onderzoek/portaal/#/projecten/3E180082?lang=en&hl=en), which aims to build a system capable of understanding and solving probability and combinatorial problems expressed in natural language.
