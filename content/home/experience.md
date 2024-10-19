@@ -28,7 +28,7 @@ experience:
     company_logo: KUL
     location: Belgium
     date_start: '2018-11-11'
-    date_end: ''
+    date_end: '2023-03-08'
     description: |2-
         Also Teaching Assistant for the courses:
         * Databases (BSc)
