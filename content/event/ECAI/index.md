@@ -38,8 +38,8 @@ image:
 
 links:
 url_code: ''
-url_pdf: ''
-url_slides: 'slides/ECAI.pdf'
+url_pdf: 'slides/ECAI.pdf'
+url_slides: ''
 url_video: ''
 
 # Markdown Slides (optional).
