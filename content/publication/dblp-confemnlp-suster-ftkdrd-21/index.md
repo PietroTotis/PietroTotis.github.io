@@ -18,6 +18,7 @@ date: '2021-01-01'
 lastmod: 2022-11-04T12:29:20+01:00
 featured: false
 draft: false
+show_breadcrumb: true
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
@@ -34,8 +35,7 @@ image:
 #   Otherwise, set `projects = []`.
 projects: []
 publishDate: '2022-11-04T11:29:19.948674Z'
-publication_types:
-- '1'
+publication_types: ['paper-conference']
 abstract: 'While solving math word problems automatically has received considerable attention in the NLP community, few works have addressed probability word problems specifically. In this paper, we employ and analyse various neural
 models for answering such word problems. In a two-step approach, the problem text is first mapped to a formal representation in a declarative language using a sequence-to-sequence model, and then the resulting representation
 is executed using a probabilistic programming system to provide the answer. Our best performing model incorporates general-domain contextualised word representations that were finetuned using transfer learning on another in-domain dataset. We also apply end-to-end models to this task, which bring out the importance of the two-step approach in obtaining correct solutions to probability problems.'
@@ -43,6 +43,7 @@ summary: "We analyze different neural models to solve probability math word prob
 publication: '*Proceedings of the 2021 Conference on Empirical Methods in Natural
   Language Processing, EMNLP 2021, Virtual Event / Punta Cana, Dominican Republic,
   7-11 November, 2021*'
+publication_short: "*EMNLP 2021*"
 doi: 10.18653/v1/2021.emnlp-main.294
 links:
 - name: URL

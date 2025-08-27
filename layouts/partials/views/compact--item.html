@@ -1,0 +1,107 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+<div class="publication-item border rounded-md p-4 mb-4 shadow-sm hover:shadow-md transition-shadow bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700"
+     data-tags="{{ delimit .item.Params.tags ", " }}">
+  
+  <!-- Title -->
+  <h3 class="text-xl font-semibold mb-1">
+    <a href="{{ .item.RelPermalink }}" class="text-accent hover:underline dark:text-primary-300">
+      {{ .item.Title }}
+    </a>
+  </h3>
+
+  <!-- Summary or Abstract -->
+  <p class="text-gray-700 dark:text-gray-300 mb-2">
+    {{ if .item.Summary }}
+      {{ .item.Summary | plainify | truncate 180 }}
+    {{ else if .item.Params.abstract }}
+      {{ .item.Params.abstract | plainify | truncate 180 }}
+    {{ else }}
+      <em>No summary available.</em>
+    {{ end }}
+  </p>
+
+  <!-- Authors -->
+  <p class="text-sm text-gray-500 dark:text-gray-400 italic mb-3">
+    {{ with .item.Params.authors }}{{ delimit . ", " }}{{ end }}
+  </p>
+
+  <!-- Buttons -->
+  <div class="flex flex-wrap gap-2 text-sm">
+    <!-- PDF Button -->
+    {{ with .item.Params.url_pdf }}
+      <a href="{{ . }}" target="_blank" rel="noopener"
+        class="inline-flex items-center px-3 py-1 rounded-md border border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white dark:hover:text-white transition">
+        <i class="fas fa-file-pdf mr-1"></i>PDF
+      </a>
+    {{ end }}
+
+    <!-- DOI Button -->
+    {{ range .item.Params.links }}
+      {{ if eq .name "URL" }}
+        <a href="{{ .url }}" target="_blank" rel="noopener"
+          class="inline-flex items-center px-3 py-1 rounded-md border border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white dark:hover:text-white transition">
+          <i class="fas fa-link mr-1"></i>DOI
+        </a>
+      {{ end }}
+    {{ end }}
+
+    <!-- Code Button -->
+    {{ with .item.Params.url_code }}
+      <a href="{{ . }}" target="_blank" rel="noopener"
+        class="inline-flex items-center px-3 py-1 rounded-md border border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white dark:hover:text-white transition">
+        <i class="fas fa-code mr-1"></i>Code
+      </a>
+    {{ end }}
+
+    <!-- Dataset Button -->
+    {{ with .item.Params.url_dataset }}
+      <a href="{{ . }}" target="_blank" rel="noopener"
+        class="inline-flex items-center px-3 py-1 rounded-md border border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white dark:hover:text-white transition">
+        <i class="fas fa-database mr-1"></i>Dataset
+      </a>
+    {{ end }}
+
+    <!-- Poster Button -->
+    {{ with .item.Params.url_poster }}
+      <a href="{{ . }}" target="_blank" rel="noopener"
+        class="inline-flex items-center px-3 py-1 rounded-md border border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white dark:hover:text-white transition">
+        <i class="fas fa-file-alt mr-1"></i>Poster
+      </a>
+    {{ end }}
+
+    <!-- Project Button -->
+    {{ with .item.Params.url_project }}
+      <a href="{{ . }}" target="_blank" rel="noopener"
+        class="inline-flex items-center px-3 py-1 rounded-md border border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white dark:hover:text-white transition">
+        <i class="fas fa-briefcase mr-1"></i>Project
+      </a>
+    {{ end }}
+
+    <!-- Slides Button -->
+    {{ with .item.Params.url_slides }}
+      <a href="{{ . }}" target="_blank" rel="noopener"
+        class="inline-flex items-center px-3 py-1 rounded-md border border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white dark:hover:text-white transition">
+        <i class="fas fa-sliders-h mr-1"></i>Slides
+      </a>
+    {{ end }}
+
+    <!-- Source Button -->
+    {{ with .item.Params.url_source }}
+      <a href="{{ . }}" target="_blank" rel="noopener"
+        class="inline-flex items-center px-3 py-1 rounded-md border border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white dark:hover:text-white transition">
+        <i class="fas fa-file-code mr-1"></i>Source
+      </a>
+    {{ end }}
+
+    <!-- Video Button -->
+    {{ with .item.Params.url_video }}
+      <a href="{{ . }}" target="_blank" rel="noopener"
+        class="inline-flex items-center px-3 py-1 rounded-md border border-primary-700 text-primary-700 hover:bg-primary-700 hover:text-white dark:hover:text-white transition">
+        <i class="fas fa-video mr-1"></i>Video
+      </a>
+    {{ end }}
+  </div>
+
+
+</div>

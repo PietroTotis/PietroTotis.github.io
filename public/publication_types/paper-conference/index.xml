@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Paper-Conference | Pietro Totis</title>
+    <link>http://localhost:41063/publication_types/paper-conference/</link>
+      <atom:link href="http://localhost:41063/publication_types/paper-conference/index.xml" rel="self" type="application/rss+xml" />
+    <description>Paper-Conference</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Sun, 01 Jan 2023 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://localhost:41063/media/icon_hu_645fa481986063ef.png</url>
+      <title>Paper-Conference</title>
+      <link>http://localhost:41063/publication_types/paper-conference/</link>
+    </image>
+    
+    <item>
+      <title>Understanding ProbLog as Probabilistic Argumentation</title>
+      <link>http://localhost:41063/publication/dblp-journalscorrabs-2308-15891/</link>
+      <pubDate>Sun, 01 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:41063/publication/dblp-journalscorrabs-2308-15891/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mapping Probability Word Problems to Executable Representations</title>
+      <link>http://localhost:41063/publication/dblp-confemnlp-suster-ftkdrd-21/</link>
+      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:41063/publication/dblp-confemnlp-suster-ftkdrd-21/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mining Italian Short Argumentative Texts</title>
+      <link>http://localhost:41063/publication/dblp-confclic-it-namor-tgs-19/</link>
+      <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>http://localhost:41063/publication/dblp-confclic-it-namor-tgs-19/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Towards Distributed Computation of Answer Sets</title>
+      <link>http://localhost:41063/publication/dblp-confcilc-bortoli-itdp-19/</link>
+      <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>http://localhost:41063/publication/dblp-confcilc-bortoli-itdp-19/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Classifying Italian newspaper text: news or editorial?</title>
+      <link>http://localhost:41063/publication/dblp-confclic-it-totis-s-18/</link>
+      <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
+      <guid>http://localhost:41063/publication/dblp-confclic-it-totis-s-18/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

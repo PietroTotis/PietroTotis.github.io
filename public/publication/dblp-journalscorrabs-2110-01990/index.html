@@ -1,0 +1,1897 @@
+<!doctype html>
+<!-- This site was created with Hugo Blox. https://hugoblox.com -->
+<!-- Last Published: August 27, 2025 --><html lang="en-us" dir="ltr"
+      data-wc-theme-default="system">
+  
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=41063&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="generator" content="Hugo Blox Builder 0.4.1" />
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Pietro Totis" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="We model beliefs in argumentation problems with probabilistic logic programs and show that traditional probabilistic logic programming (PLP) systems cannot reason on this type of programs. We thus present smProblog, a novel PLP system based on ProbLog, where inference and learning over such probabilistic argumentation problems are possible." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="http://localhost:41063/publication/dblp-journalscorrabs-2110-01990/" />
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="/css/themes/custom.min.css" />
+  
+
+  
+  
+    
+    <link href="/dist/wc.min.66412b998ac08468152d24203c4b87b9cee6bcf511d07b4d040d809cecafd615.css" rel="stylesheet" />
+  
+
+  
+  
+  
+
+  
+
+  <script>
+     
+    window.hbb = {
+       defaultTheme: document.documentElement.dataset.wcThemeDefault,
+       setDarkTheme: () => {
+        document.documentElement.classList.add("dark");
+        document.documentElement.style.colorScheme = "dark";
+      },
+       setLightTheme: () => {
+        document.documentElement.classList.remove("dark");
+        document.documentElement.style.colorScheme = "light";
+      }
+    }
+
+    console.debug(`Default Hugo Blox Builder theme is ${window.hbb.defaultTheme}`);
+
+    if ("wc-color-theme" in localStorage) {
+      localStorage.getItem("wc-color-theme") === "dark" ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
+    } else {
+      window.hbb.defaultTheme === "dark" ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
+      if (window.hbb.defaultTheme === "system") {
+        window.matchMedia("(prefers-color-scheme: dark)").matches ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
+      }
+    }
+  </script>
+
+  <script>
+    
+    document.addEventListener('DOMContentLoaded', function () {
+      
+      let checkboxes = document.querySelectorAll('li input[type=\'checkbox\'][disabled]');
+      checkboxes.forEach(e => {
+        e.parentElement.parentElement.classList.add('task-list');
+      });
+
+      
+      const liNodes = document.querySelectorAll('.task-list li');
+      liNodes.forEach(nodes => {
+        let textNodes = Array.from(nodes.childNodes).filter(node => node.nodeType === 3 && node.textContent.trim().length > 1);
+        if (textNodes.length > 0) {
+          const span = document.createElement('label');
+          textNodes[0].after(span);  
+          span.appendChild(nodes.querySelector('input[type=\'checkbox\']'));
+          span.appendChild(textNodes[0]);
+        }
+      });
+    });
+  </script>
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  <link rel="icon" type="image/png" href="/media/icon_hu_5cac115d14ed3d49.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu_e7f327b39c12e7ca.png" />
+
+  <link rel="canonical" href="http://localhost:41063/publication/dblp-journalscorrabs-2110-01990/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary_large_image" />
+  
+  <meta property="og:site_name" content="Pietro Totis" />
+  <meta property="og:url" content="http://localhost:41063/publication/dblp-journalscorrabs-2110-01990/" />
+  <meta property="og:title" content="smProbLog: Stable Model Semantics in ProbLog for Probabilistic Argumentation | Pietro Totis" />
+  <meta property="og:description" content="We model beliefs in argumentation problems with probabilistic logic programs and show that traditional probabilistic logic programming (PLP) systems cannot reason on this type of programs. We thus present smProblog, a novel PLP system based on ProbLog, where inference and learning over such probabilistic argumentation problems are possible." /><meta property="og:image" content="http://localhost:41063/publication/dblp-journalscorrabs-2110-01990/featured.jpg" />
+    <meta property="twitter:image" content="http://localhost:41063/publication/dblp-journalscorrabs-2110-01990/featured.jpg" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2022-11-04T11:29:20&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2022-11-04T12:29:20&#43;01:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:41063/publication/dblp-journalscorrabs-2110-01990/"
+  },
+  "headline": "smProbLog: Stable Model Semantics in ProbLog for Probabilistic Argumentation",
+  
+  "image": [
+    "http://localhost:41063/publication/dblp-journalscorrabs-2110-01990/featured.jpg"
+  ],
+  
+  "datePublished": "2022-11-04T11:29:20Z",
+  "dateModified": "2022-11-04T12:29:20+01:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Pietro Totis"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pietro Totis",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:41063/media/icon_hu_1df060215326dd50.png"
+    }
+  },
+  "description": "We model beliefs in argumentation problems with probabilistic logic programs and show that traditional probabilistic logic programming (PLP) systems cannot reason on this type of programs. We thus present smProblog, a novel PLP system based on ProbLog, where inference and learning over such probabilistic argumentation problems are possible."
+}
+</script>
+
+  
+
+  
+
+
+  <title>smProbLog: Stable Model Semantics in ProbLog for Probabilistic Argumentation | Pietro Totis</title>
+
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <style>
+    @font-face {
+      font-family: 'Inter var';
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url(/dist/font/Inter.var.woff2) format(woff2);
+    }
+  </style>
+
+  
+
+  
+  
+
+
+  
+  
+  
+  
+  
+  
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+  
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="/dist/pagefind/pagefind-ui.be766eb419317a14ec769d216e9779bfe8f3737c80e780f4ba0dafb57a41a482.css" integrity="sha256-vnZutBkxehTsdp0hbpd5v&#43;jzc3yA54D0ug2vtXpBpII=" />
+
+
+<script src="/dist/pagefind/pagefind-ui.87693d7c6f2b3b347ce359d0ede762c033419f0a32b22ce508c335a81d841f1b.js" integrity="sha256-h2k9fG8rOzR841nQ7ediwDNBnwoysizlCMM1qB2EHxs="></script>
+
+
+<script>window.hbb.pagefind = {"baseUrl":"/"};</script>
+
+<style>
+  html.dark {
+    --pagefind-ui-primary: #eeeeee;
+    --pagefind-ui-text: #eeeeee;
+    --pagefind-ui-background: #152028;
+    --pagefind-ui-border: #152028;
+    --pagefind-ui-tag: #152028;
+  }
+
+   
+  .search-close > svg {
+    height: calc(64px * var(--pagefind-ui-scale));
+    width: calc(64px * var(--pagefind-ui-scale));
+  }
+</style>
+
+<script>
+  
+  let searchWrapper = null;
+
+  window.addEventListener('DOMContentLoaded', (event) => {
+    
+    new PagefindUI({
+      element: "#search",
+      showSubResults: true,
+      baseUrl: window.hbb.pagefind.baseUrl,
+      bundlePath: window.hbb.pagefind.baseUrl + "pagefind/",
+    });
+
+    
+    searchWrapper = document.getElementById('search-wrapper');
+
+    
+    let triggers = document.querySelectorAll('[data-search-toggle]');
+    triggers.forEach(trigger =>
+      trigger.addEventListener('click', handleSearchToggle)
+    );
+  });
+
+  function handleSearchToggle(event) {
+    if (!searchWrapper) return;
+
+    const isHidden = searchWrapper.classList.contains('hidden');
+    searchWrapper.classList.toggle('hidden');
+    document.body.style.overflow = isHidden ? 'hidden' : '';
+
+    const searchInput = searchWrapper.querySelector("input");
+    if (searchInput) {
+      searchInput.value = "";
+      searchInput.focus();
+    }
+
+    if (!searchWrapper.classList.contains('hidden')) {
+      let clearTrigger = document.querySelector('.pagefind-ui__search-clear');
+
+      if (clearTrigger && !clearTrigger.hasAttribute('listenerOnClick')) {
+        clearTrigger.setAttribute('listenerOnClick', 'true');
+
+        clearTrigger.addEventListener('click', () => {
+          searchInput.focus();
+        });
+      }
+    }
+  }
+
+  
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && searchWrapper && !searchWrapper.classList.contains('hidden')) {
+      searchWrapper.classList.add('hidden');
+    }
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link type="text/css" rel="stylesheet" href="/dist/lib/katex/katex.min.505d5f829022bb7b4f24dfee0aa1141cd7bba67afe411d1240335f820960b5c3.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr&#43;QR0SQDNfgglgtcM=" />
+  
+  
+  <script defer src="/dist/lib/katex/katex.min.dc84b296ec3e884de093158f760fd9d45b6c7abe58b5381557f4e138f46a58ae.js" integrity="sha256-3ISyluw&#43;iE3gkxWPdg/Z1Ftser5YtTgVV/ThOPRqWK4="></script>
+  
+  
+  
+  
+  <script defer src="/js/katex-renderer.6579ec9683211cfb952064aedf3a3baea5eeb17a061775b32b70917474637c80.js" integrity="sha256-ZXnsloMhHPuVIGSu3zo7rqXusXoGF3WzK3CRdHRjfIA="></script>
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  <script
+    defer
+    src="/js/hugo-blox-en.min.js"
+    integrity=""
+  ></script>
+
+  
+  
+
+
+
+
+
+
+
+
+  
+    
+      
+      <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+      
+    
+  
+
+
+
+
+</head>
+
+  <body class="dark:bg-hb-dark dark:text-white page-wrapper" id="top">
+    <div id="page-bg"></div>
+    <div class="page-header sticky top-0 z-30">
+      
+      
+      
+        
+        
+        
+          <header id="site-header" class="header">
+  <nav class="navbar px-3 flex justify-left">
+    <div class="order-0 h-100">
+      
+      <a class="navbar-brand" href="/" title="Pietro Totis">
+        Pietro Totis
+      </a>
+    </div>
+    
+    <input id="nav-toggle" type="checkbox" class="hidden" />
+    <label
+      for="nav-toggle"
+      class="order-3 cursor-pointer flex items-center lg:hidden text-dark dark:text-white lg:order-1">
+      <svg id="show-button" class="h-6 fill-current block" viewBox="0 0 20 20">
+        <title>Open Menu</title>
+        <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
+      </svg>
+      <svg id="hide-button" class="h-6 fill-current hidden" viewBox="0 0 20 20">
+        <title>Close Menu</title>
+        <polygon
+          points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
+          transform="rotate(45 10 10)"></polygon>
+      </svg>
+    </label>
+    
+
+    
+    
+    <ul
+      id="nav-menu"
+      class="navbar-nav order-3 hidden lg:flex w-full pb-6 lg:order-1 lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8 justify-left
+      ">
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/"
+        >Bio</a
+        >
+      </li>
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/#papers"
+        >Papers</a
+        >
+      </li>
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/#talks"
+        >Talks</a
+        >
+      </li>
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/#experience"
+        >Experience</a
+        >
+      </li>
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/projects/"
+        >Projects</a
+        >
+      </li>
+      
+      
+      
+    </ul>
+
+    <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0">
+
+      
+      
+      
+      <button
+        aria-label="toggle search"
+        class="text-black hover:text-primary  inline-block px-3 text-xl dark:text-white"
+        data-search-toggle>
+        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512" fill="currentColor"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
+      </button>
+      
+
+      
+      
+      <div class="px-3 text-black hover:text-primary-700 dark:text-white dark:hover:text-primary-300
+            [&.active]:font-bold [&.active]:text-black/90 dark:[&.active]:text-white">
+        <button class="theme-toggle mt-1" accesskey="t" title="appearance">
+          <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" class="dark:hidden">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" class=" dark:block [&:not(dark)]:hidden">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+      </div>
+      
+
+      
+      
+
+      
+      
+    </div>
+  </nav>
+</header>
+
+<div
+  id="search-wrapper"
+  class="hidden fixed inset-0 z-50 bg-white dark:bg-gray-900 flex flex-col overflow-hidden"
+>
+  <div class="flex justify-end p-3">
+    <button
+      aria-label="search"
+      class="search-close text-black hover:text-primary dark:text-white"
+      data-search-toggle
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <div id="search" class="flex-1 overflow-y-auto p-3">
+    
+  </div>
+</div>
+
+
+        
+      
+    </div>
+    <div class="page-body  my-10">
+      
+
+
+
+
+  
+    
+    
+  
+
+
+<div class="mx-auto flex max-w-screen-xl">
+  
+
+
+
+<aside class="hb-sidebar-container max-lg:[transform:translate3d(0,-100%,0)] lg:hidden xl:block">
+  
+  <div class="px-4 pt-4 lg:hidden">
+    
+    
+  </div>
+  <div class="hb-scrollbar lg:h-[calc(100vh-var(--navbar-height))]">
+    <ul class="flex flex-col gap-1 lg:hidden">
+      
+      
+        <li class=""><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/event/"
+    
+  >Recent Talks
+        <span data-hb-sidebar-toggle>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-[18px] min-w-[18px] rounded-sm p-0.5 hover:bg-gray-800/5 dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="origin-center transition-transform rtl:-rotate-180"></path></svg>
+        </span>
+    </a><div class="ltr:pr-0 overflow-hidden">
+        <ul class="hb-sidebar-list"><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/event/ecai/"
+    
+  >Lifted Reasoning for Combinatorial Counting (ECAI)
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/event/public_defence/"
+    
+  >Declarative Modelling and Reasoning for Combinatorial Problem Solving and Argumentation under Uncertainty
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/event/xai/"
+    
+  >Reasoning on Arguments and Beliefs with Probabilistic Logic Programs
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/event/dtai2/"
+    
+  >Lifted Reasoning for Combinatorial Counting
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/event/dtai1/"
+    
+  >Stable Model Semantics in ProbLog and its Applications in Argumentation
+    </a>
+              
+            </li></ul>
+      </div></li>
+        <li class=""><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/projects/"
+    
+  >Projects
+    </a></li>
+        <li class=""><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/experience/"
+    
+  >Experience
+    </a></li>
+        <li class="open"><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/"
+    
+  >Publications
+        <span data-hb-sidebar-toggle>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-[18px] min-w-[18px] rounded-sm p-0.5 hover:bg-gray-800/5 dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="origin-center transition-transform rtl:-rotate-180"></path></svg>
+        </span>
+    </a><div class="ltr:pr-0 overflow-hidden">
+        <ul class="hb-sidebar-list"><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/dblp-journalscorrabs-2308-15891/"
+    
+  >Understanding ProbLog as Probabilistic Argumentation
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/coso/"
+    
+  >Lifted Reasoning for Combinatorial Counting
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/dblp-journalstplp-kiesel-tk-22/"
+    
+  >Efficient Knowledge Compilation Beyond Weighted Model Counting
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/dblp-confemnlp-suster-ftkdrd-21/"
+    
+  >Mapping Probability Word Problems to Executable Representations
+    </a>
+              
+            </li><li class="flex flex-col open"><a
+    class="hb-sidebar-custom-link
+      sidebar-active-item bg-primary-100 font-semibold text-primary-800 dark:bg-primary-300 dark:text-primary-900"
+    href="/publication/dblp-journalscorrabs-2110-01990/"
+    
+  >smProbLog: Stable Model Semantics in ProbLog for Probabilistic Argumentation
+    </a>
+  
+    <ul class="hb-sidebar-mobile-toc"><li>
+              <a
+                href="#"
+                class="hb-docs-link"
+              ></a>
+            </li>
+          </ul>
+  
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/dblp-confclic-it-namor-tgs-19/"
+    
+  >Mining Italian Short Argumentative Texts
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/dblp-confcilc-bortoli-itdp-19/"
+    
+  >Towards Distributed Computation of Answer Sets
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/dblp-confclic-it-totis-s-18/"
+    
+  >Classifying Italian newspaper text: news or editorial?
+    </a>
+              
+            </li></ul>
+      </div></li>
+        <li class=""><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/project/"
+    
+  >Projects
+        <span data-hb-sidebar-toggle>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-[18px] min-w-[18px] rounded-sm p-0.5 hover:bg-gray-800/5 dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="origin-center transition-transform rtl:-rotate-180"></path></svg>
+        </span>
+    </a><div class="ltr:pr-0 overflow-hidden">
+        <ul class="hb-sidebar-list"><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/project/nlp4plp/"
+    
+  >Solving Combinatorial and Probabilistic Problems in Natural Language 
+    </a>
+              
+            </li></ul>
+      </div></li>
+        <li class=""><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/post/"
+    
+  >Blog
+    </a></li>
+        <li class=""><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/teaching/"
+    
+  >Blog
+    </a></li>
+    </ul>
+
+    <div class="max-xl:hidden h-0 w-64 shrink-0"></div></div>
+
+</aside>
+  
+
+<nav class="hb-toc order-last hidden w-64 shrink-0 xl:block print:hidden px-4" aria-label="table of contents">
+  
+
+
+
+
+
+
+
+
+
+
+
+  <div class="hb-scrollbar text-sm [hyphens:auto] sticky top-16 overflow-y-auto pr-4 pt-6 max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] -mr-4 rtl:-ml-4"><p class="mb-4 font-semibold tracking-tight">On this page</p><ul>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#problem">Problem</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#what-do-probabilities-mean">What do probabilities mean?</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#mapping-probabilistic-aafs-to-plp">Mapping probabilistic AAFs to PLP</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#the-joint-probability-distribution">The joint probability distribution</a>
+      </li></ul>
+
+  
+  
+    
+    
+  
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+  </nav>
+
+
+  <article class="w-full break-words flex min-h-[calc(100vh-var(--navbar-height))] min-w-0 justify-center pb-8 pr-[calc(env(safe-area-inset-right)-1.5rem)]">
+    <main class="w-full min-w-0 max-w-6xl px-6 pt-4 md:px-12">
+
+      
+      <div class="mb-4">
+        <div class="mt-1.5 flex items-center gap-1 overflow-hidden text-sm text-gray-500 dark:text-gray-400">
+      <div class="whitespace-nowrap transition-colors min-w-[24px] overflow-hidden text-ellipsis hover:text-gray-900 dark:hover:text-gray-100">
+        <a href="http://localhost:41063/publication/">Publications</a>
+      </div><svg class="w-3.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m8.25 4.5l7.5 7.5l-7.5 7.5"/></svg><div class="whitespace-nowrap font-medium text-gray-700 dark:text-gray-100">smProbLog: Stable Model Semantics in ProbLog for Probabilistic Argumentation</div>
+</div>
+
+      </div>
+      
+
+      <h1 class="mt-2 text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100">smProbLog: Stable Model Semantics in ProbLog for Probabilistic Argumentation</h1>
+
+      <div class="mt-4 mb-16">
+      <div class="text-gray-500 dark:text-gray-300 text-sm flex items-center flex-wrap gap-y-2"><span class="mr-1">Jan 1, 2021</span><span class="mx-1">·</span>
+        
+          
+          
+          <div class="group inline-flex items-center text-current gap-x-1.5 mx-1">
+            
+            <div >Pietro Totis</div>
+          </div>
+          
+        
+          
+          <span class="mr-1">,</span>
+          <div class="group inline-flex items-center text-current gap-x-1.5 mx-1">
+            
+            <div >Angelika Kimmig</div>
+          </div>
+          
+        
+          
+          <span class="mr-1">,</span>
+          <div class="group inline-flex items-center text-current gap-x-1.5 mx-1">
+            
+            <div >Luc De Raedt</div>
+          </div>
+          
+        
+
+        
+        <span class="mx-1">·</span>
+        <span class="mx-1">
+          6 min read
+        </span>
+        
+        </div>
+
+        <div class="mt-3">
+          
+
+
+
+
+<div class="">
+  
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+
+
+
+<a class="hb-attachment-link hb-attachment-large" href="https://arxiv.org/pdf/2304.00879.pdf" target="_blank" rel="noopener">
+  <svg style="height: 1em" class='inline-block' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9"/></svg>
+  PDF
+</a>
+
+
+
+<a class="hb-attachment-link hb-attachment-large" href="/publication/dblp-journalscorrabs-2110-01990/cite.bib" target="_blank" data-filename="/publication/dblp-journalscorrabs-2110-01990/cite.bib">
+  <svg style="height: 1em" class='inline-block' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"/></svg>
+  Cite
+</a>
+
+
+  
+  
+    
+  
+<a class="hb-attachment-link hb-attachment-large" href="https://github.com/PietroTotis/smProblog" target="_blank" rel="noopener">
+  <svg style="height: 1em" class='inline-block' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg>
+  Code
+</a>
+
+
+
+
+
+
+
+
+
+
+
+
+<a class="hb-attachment-link hb-attachment-large" href="https://doi.org/10.1017/S147106842300008X" target="_blank" rel="noopener">
+  DOI
+</a>
+
+
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+  
+  <a class="hb-attachment-link hb-attachment-large" href="https://www.cambridge.org/core/journals/theory-and-practice-of-logic-programming/article/smproblog-stable-model-semantics-in-problog-for-probabilistic-argumentation/4C4DAF1C4E5BADA746E4E2F1694AC0A7" target="_blank" rel="noopener">
+    <svg style="height: 1em" class='inline-block' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"/></svg>
+    URL</a>
+
+
+</div>
+
+
+        </div>
+      </div>
+
+
+
+      
+      
+      
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="article-header article-container featured-image-wrapper mt-4 mb-16" style="max-width: 720px; max-height: 588px;">
+        <div style="position: relative">
+          <img src="/publication/dblp-journalscorrabs-2110-01990/featured_hu_386bdde8b1fb4874.webp" width="720" height="588" alt="" class="featured-image">
+          
+        </div>
+      </div>
+      
+
+      
+      
+        <div class="max-w-prose grid grid-cols-1 md:grid-cols-[200px_auto] gap-4 my-6">
+
+        
+          <div class="font-bold text-2xl">Abstract</div>
+          <div>Argumentation problems are concerned with determining the acceptability of a set of arguments from their relational structure. When the available information is uncertain, probabilistic argumentation frameworks provide modeling tools to account for it. The first contribution of this paper is a novel interpretation of probabilistic argumentation frameworks as probabilistic logic programs. Probabilistic logic programs are logic programs in which some of the facts are annotated with probabilities. We show that the programs representing probabilistic argumentation frameworks do not satisfy a common assumption in probabilistic logic programming (PLP) semantics, which is, that probabilistic facts fully capture the uncertainty in the domain under investigation. The second contribution of this paper is then a novel PLP semantics for programs where a choice of probabilistic facts does not uniquely determine the truth assignment of the logical atoms. The third contribution of this paper is the implementation of a PLP system supporting this semantics: smProbLog. smProbLog is a novel PLP framework based on the PLP language ProbLog. smProbLog supports many inference and learning tasks typical of PLP, which, together with our first contribution, provide novel reasoning tools for probabilistic argumentation. We evaluate our approach with experiments analyzing the computational cost of the proposed algorithms and their application to a dataset of argumentation problems.</div>
+        
+
+        
+        
+          <div class="font-bold text-2xl">Type</div>
+          <div>
+            
+            <a href="/publication_types/article-journal/">
+            Journal article
+            </a>
+            
+          </div>
+        
+
+        
+          <div class="font-bold text-2xl">Publication</div>
+          <div><em>Theory and Practice of Logic Programming</em></div>
+        
+
+        
+
+        
+
+        
+
+      </div>
+      
+
+      <div class="prose prose-slate lg:prose-xl dark:prose-invert">
+        <h3 id="problem">Problem</h3>
+<p>In this paper we propose a new approach to probabilistic argumentation problems based on probabilistic logic programming (PLP).
+Probabilistic argumentation problems augment a traditional <em>abstract argumentation framework</em> (AAF) with probabilities: nodes are atomic arguments and edges denote the attack relation.
+Both arguments and relations can be associated with probabilities.</p>
+<img src="pargs.svg" width="600">
+<p>For probabilistic AAFs there are different approaches to define the semantics of probabilities and reasoning techniques specific to probabilistic AAFs.
+On the contrary, PLP languages and systems aim at offering general purpose tools to reason and learn in structured domains under uncertainty.
+In this paper we address the question as to whether PLP systems can be used to define semantics and reasoning techniques for probabilistic argumentation problems.
+Our answer is divided in two parts:</p>
+<ol>
+<li>a mapping from probabilistic AAFs to probabilistic logic programs;</li>
+<li>a PLP semantics and system, <a href="https://github.com/PietroTotis/smProblog" target="_blank" rel="noopener">smProbLog</a>, which provide reasoning and learning tools suitable to this type of programs.</li>
+</ol>
+<h3 id="what-do-probabilities-mean">What do probabilities mean?</h3>
+<p>Probabilistic logic programs are logic programs in which some of the facts are annotated with probabilities.
+For instance in this program the facts <code>rain</code> and <code>wind</code> are <em>probabilistic</em> because they belong to the program with some probability.
+Taking the umbrella or wearing the scarf are inferred from these two facts according to the logic rules.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">0.4::rain.                  % probabilistic facts
+</span></span><span class="line"><span class="cl">0.7::wind.                   
+</span></span><span class="line"><span class="cl">umbrella :- rain, not wind. % logic rules
+</span></span><span class="line"><span class="cl">scarf :- rain.
+</span></span><span class="line"><span class="cl">scarf :- wind.
+</span></span><span class="line"><span class="cl">query(umbrella).            % compute the probability of taking the umbrella
+</span></span></code></pre></div><p>Distribution semantics<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> define the semantics of probabilities: each probabilistic fact $p::f.$
+
+represents an <em>independent</em> choice to include or not the fact in the program.
+A total choice is a set of choices for all facts: the <em>deterministic</em> program obtained by combining a total choice with the logical rules is a <em>possible world</em>.
+The probability of success of a query is the sum of the probabilities of the possible worlds where queried atom can be derived to be true.</p>
+<p>In probabilistic AAFs there are two approaches<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> to define the semantics and reasoning techniques of probabilities:</p>
+<ol>
+<li>The constellations approach.</li>
+<li>The epistemic approach.</li>
+</ol>
+<p>The constellations approach considers probabilities an expression of uncertainty over the structure of the graph.
+Similarly to distribution semantics, the probabilities induce a set of possible worlds corresponding to all possible subgraphs.
+The probability of a subgraph is the combination of the probabilities of the chosen nodes and edges, and the probability of accepting an argument is the sum of the probabilities of the argument graphs where the argument is acceptable.
+<img src="const.svg">
+This approach however presents two issues regarding semantics:</p>
+<ol>
+<li>the independence assumption of including or not an argument in the graph, while the goal of an AAF is to model their dependencies.</li>
+<li>the semantics of the possible worlds where an attack is chosen but one of the two arguments involved is not (e.g. worlds on the right-hand side)</li>
+</ol>
+<p>On the other hand, in the epistemic approach probabilities express <em>degrees of belief</em> in the arguments, and the structure of the graph is no longer uncertain.
+Arguments with probability higher than 0.5 are considered accepted, otherwise rejected.
+Reasoning on epistemic argument graphs thus consists in finding a family of probability distribution that satisfies a given set of properties, e.g. coherency, rationality,&hellip;, with respect to the structure of the argument graph.
+<img src="epistemic.svg">
+For example the belief assignment in the picture is not rational because both $a_1$
+ and $a_2$
+ are accepted, but also the attack between the two receives a high degree of belief.</p>
+<p>By mapping probabilistic argument graphs to PLP we introduce a novel perspective which combines the two approaches.
+We model explicitly degrees of belief as in the epistemic approach, but we reason over this uncertainty with probabilistic logic programs and the distributions semantics, thus in terms of possible worlds as in the constellations approach.
+The key points of our approach are:</p>
+<ol>
+<li>The probability of an argument represents a belief bias <em>independent</em> of other arguments.
+It summarizes all the epistemic effects of the supporters of an argument which are not relevant to represent explicitly.</li>
+<li>An attack $(a,b)$
+ with probability $p$
+ defines an <em>inhibition</em> of the belief in $b$
+ proportional to $p$
+ when $a$ is believed.</li>
+</ol>
+<h3 id="mapping-probabilistic-aafs-to-plp">Mapping probabilistic AAFs to PLP</h3>
+<p>Judea Pearl<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup> remarks how the combination of probability theory and graphs representing context dependencies are fundamental to model beliefs:</p>
+<blockquote>
+<p>We will also stress that probability theory is unique in its ability to process context-sensitive beliefs, and what makes the processing computationally feasible is that the information needed for specifying context dependencies can be represented by graphs and manipulated by local propagation.</p></blockquote>
+<p>We follow this principle in interpreting the argument graph as the representation of context dependencies between arguments:</p>
+<ol>
+<li>We map arguments to logical atoms that are inferred from logical rules</li>
+<li>We map arguments&rsquo; probabilities to probabilistic facts which model a bias independent of other arguments. Any argument can be inferred from its bias.</li>
+<li>We map attacks to logic rules with <em>negation in the head</em> annotated with the attack&rsquo;s probability.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">0.6::bias(hotel_X).
+</span></span><span class="line"><span class="cl">0.8::bias(hotel_Y).
+</span></span><span class="line"><span class="cl">0.4::bias(expensive).
+</span></span><span class="line"><span class="cl">0.2::bias(noise).
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">arg(X) :- bias(X).
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">0.7::¬arg(hotel_Y) :- arg(hotel_X).
+</span></span><span class="line"><span class="cl">0.4::¬arg(hotel_X) :- arg(hotel_Y).
+</span></span><span class="line"><span class="cl">0.8::¬arg(hotel_Y) :- arg(noise).
+</span></span><span class="line"><span class="cl">0.9::¬arg(hotel_X) :- arg(expensive).
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">query(arg(X)).
+</span></span></code></pre></div><p>Annotated rules are a syntactic feature that is equivalent to an additional probabilistic fact in the body, for instance:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">0.8::umbrella :- rain, not wind.
+</span></span></code></pre></div><p>is equivalent to:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">0.8 :: remember.
+</span></span><span class="line"><span class="cl">umbrella :- remember, rain, not wind.
+</span></span></code></pre></div><p>Moreover, negation in the head models the so-called <em>inhibition effect</em>, which expresses an inhibition of the belief of the head of the rule proportional to its probability.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">0.3::friend_brings_umbrella.
+</span></span><span class="line"><span class="cl">¬umbrella :- friend_brings_umbrella.
+</span></span></code></pre></div><p>is internally rewritten as:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">0.3::friend_brings_umbrella.
+</span></span><span class="line"><span class="cl">umbrella :- umbrella_pos, umbrella_neg.
+</span></span><span class="line"><span class="cl">umbrella_pos :- remember, rain, not wind.
+</span></span><span class="line"><span class="cl">umbrella_neg :- friend_brings_umbrella.
+</span></span></code></pre></div><div style="display:flex;">
+<img src="IE1.svg" width="400" style="margin-left:-10%">
+<img src="IE2.svg" width="400" style="margin-left:-30%">
+</div>
+<p>Moreover, the flexibility and expressivity of PLP can be exploited to encode more complex argumentation problems than basic AFFs, for instance expressing supports with regular rules (as with bias) or joint attacks or supports with rules with multiple arguments in the body.</p>
+<h3 id="the-joint-probability-distribution">The joint probability distribution</h3>
+<p>The programs obtained from this mapping define a <em>joint probability distribution</em> over the arguments.
+The joint probability (belief) distribution induced by the argument graph resembles the description of N. Nilsson<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup> of how humans reason over beliefs:</p>
+<blockquote>
+<p>If we were to examine the relationships among all of our beliefs carefully, an impossible task in practice but one that is interesting to think about, we would see that some of them should make others more credible and some less. They would even compete among themselves with conflicting influences. We can imagine all of the beliefs in our large network of beliefs “fighting it out” to agree finally on the strength of each belief in the network. When they do finally agree, we say that the beliefs cohere.</p></blockquote>
+<p>The joint probability distribution can be analyzed with the typical PLP tools and algorithms offered by PLP systems.
+Conditional probabilities, expressed by means of <em>evidence</em>, can be queried to study how the beliefs change when new information about the truth of the arguments is provided.</p>
+<iframe src="/belief.html" title="Beliefs animation" height="400" width="700" frameBorder="0"></iframe>
+Most probable explanation (MPE) queries return the most probable possible world where the given evidence holds. 
+They can thus be used to find the set of beliefs which contribute the most to believing one or more arguments.
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="https://rjida.meijo-u.ac.jp/reference/ICLP95.pdf" target="_blank" rel="noopener">T. Sato, &ldquo;A Statistical Learning Method for Logic Programs with Distribution Semantics&rdquo;, ICLP 1995.</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="http://www0.cs.ucl.ac.uk/staff/a.hunter/papers/ijar12.pdf" target="_blank" rel="noopener">A. Hunter, &ldquo;A probabilistic approach to modelling uncertain logical arguments&rdquo;, Int. J. Approx. Reasoning, 2013</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p><a href="https://dl.acm.org/doi/10.5555/534975" target="_blank" rel="noopener">J. Pearl, &ldquo;Probabilistic reasoning in intelligent systems: networks of plausible inference&rdquo;, Rev. 2. ed. Morgan Kaufmann, 2009</a>.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p><a href="https://mitpress.mit.edu/9780262526432/understanding-beliefs/" target="_blank" rel="noopener">N. Nilsson, &ldquo;Understanding Beliefs.&rdquo;, The MIT Press Essential Knowledge series. MIT Press, 2014</a>&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+      </div>
+
+      
+  <time class="mt-12 mb-8 block text-xs text-gray-500 ltr:text-right rtl:text-left dark:text-gray-400" datetime="2022-11-04T12:29:20.000Z">
+    <span>Last updated on</span>
+    Nov 4, 2022</time>
+
+      <div class="container mx-auto prose prose-slate lg:prose-xl dark:prose-invert mt-5">
+        
+        <div class="max-w-prose print:hidden">
+  
+  
+
+  
+<div class="flex justify-center">
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/plp/">PLP</a>
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/krr/">KRR</a>
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/argumentation/">Argumentation</a>
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/journal/">Journal</a>
+  
+</div>
+
+
+  
+<section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
+  
+
+  
+  
+  
+  
+  
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A41063%2Fpublication%2Fdblp-journalscorrabs-2110-01990%2F&amp;text=smProbLog%3A&#43;Stable&#43;Model&#43;Semantics&#43;in&#43;ProbLog&#43;for&#43;Probabilistic&#43;Argumentation"
+    title="X"
+    aria-label="X"
+    id="share-link-x"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </a>
+  
+
+  
+  
+  
+  
+  
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Flocalhost%3A41063%2Fpublication%2Fdblp-journalscorrabs-2110-01990%2F&amp;t=smProbLog%3A&#43;Stable&#43;Model&#43;Semantics&#43;in&#43;ProbLog&#43;for&#43;Probabilistic&#43;Argumentation"
+    title="Facebook"
+    aria-label="Facebook"
+    id="share-link-facebook"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+  </a>
+  
+
+  
+  
+  
+  
+  
+  
+    
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="mailto:?subject=smProbLog%3A%20Stable%20Model%20Semantics%20in%20ProbLog%20for%20Probabilistic%20Argumentation&amp;body=http%3A%2F%2Flocalhost%3A41063%2Fpublication%2Fdblp-journalscorrabs-2110-01990%2F"
+    title="Email"
+    aria-label="Email"
+    id="share-link-email"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M16.5 12a4.5 4.5 0 1 1-9 0a4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25"/></svg>
+  </a>
+  
+
+  
+  
+  
+  
+  
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="https://www.linkedin.com/shareArticle?url=http%3A%2F%2Flocalhost%3A41063%2Fpublication%2Fdblp-journalscorrabs-2110-01990%2F&amp;title=smProbLog%3A&#43;Stable&#43;Model&#43;Semantics&#43;in&#43;ProbLog&#43;for&#43;Probabilistic&#43;Argumentation"
+    title="LinkedIn"
+    aria-label="LinkedIn"
+    id="share-link-linkedin"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+  </a>
+  
+
+  
+  
+  
+  
+  
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="whatsapp://send?text=smProbLog%3A&#43;Stable&#43;Model&#43;Semantics&#43;in&#43;ProbLog&#43;for&#43;Probabilistic&#43;Argumentation%20http%3A%2F%2Flocalhost%3A41063%2Fpublication%2Fdblp-journalscorrabs-2110-01990%2F"
+    title="WhatsApp"
+    aria-label="WhatsApp"
+    id="share-link-whatsapp"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="m187.58 144.84-32-16a8 8 0 0 0-8 .5l-14.69 9.8a40.55 40.55 0 0 1-16-16l9.8-14.69a8 8 0 0 0 .5-8l-16-32A8 8 0 0 0 104 64a40 40 0 0 0-40 40 88.1 88.1 0 0 0 88 88 40 40 0 0 0 40-40 8 8 0 0 0-4.42-7.16ZM152 176a72.08 72.08 0 0 1-72-72 24 24 0 0 1 19.29-23.54l11.48 23L101 118a8 8 0 0 0-.73 7.51 56.47 56.47 0 0 0 30.15 30.15A8 8 0 0 0 138 155l14.61-9.74 23 11.48A24 24 0 0 1 152 176ZM128 24a104 104 0 0 0-91.82 152.88l-11.35 34.05a16 16 0 0 0 20.24 20.24l34.05-11.35A104 104 0 1 0 128 24Zm0 192a87.87 87.87 0 0 1-44.06-11.81 8 8 0 0 0-6.54-.67L40 216l12.47-37.4a8 8 0 0 0-.66-6.54A88 88 0 1 1 128 216Z"/></svg>
+  </a>
+  
+</section>
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+
+
+
+
+  
+    
+
+
+
+
+  
+    
+
+
+
+
+  
+
+
+
+
+  
+  
+    
+    
+    
+      
+      
+    
+<div class="pt-1 no-prose w-full">
+  <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+  <div class="flex flex-col md:flex-row flex-nowrap justify-between gap-5 pt-2">
+    <div class="">
+      
+        <a class="group flex no-underline" href="/publication/dblp-confemnlp-suster-ftkdrd-21/">
+          <span
+            class="mt-[-0.3rem] me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+          ><span class="ltr:inline rtl:hidden">&larr;</span></span>
+          <span class="flex flex-col">
+            <span
+              class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+            >Mapping Probability Word Problems to Executable Representations</span>
+            <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+              
+                Jan 1, 2021
+              
+            </span>
+          </span>
+        </a>
+      
+    </div>
+    <div class="">
+      
+        <a class="group flex text-right no-underline" href="/publication/dblp-confclic-it-namor-tgs-19/">
+          <span class="flex flex-col">
+            <span
+              class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+            >Mining Italian Short Argumentative Texts</span
+            >
+            <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+              
+                Jan 1, 2019
+              
+            </span>
+          </span>
+          <span
+            class="mt-[-0.3rem] ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+          ><span class="ltr:inline">&rarr;</span></span>
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+  
+
+
+  
+
+
+
+</div>
+
+      </div>
+
+    </main>
+  </article>
+</div>
+
+    </div>
+    <div class="page-footer">
+      <footer class="container mx-auto flex flex-col justify-items-center text-sm leading-6 mt-24 mb-4 text-slate-700 dark:text-slate-200">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+    
+  
+  
+    
+  
+
+  
+
+  
+  <p class="powered-by text-center">
+    © 2025 Me. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank">CC BY NC ND 4.0</a>
+  </p>
+  
+
+  <p class="powered-by footer-license-icons">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank" aria-label="Creative Commons">
+      <i class="fab fa-creative-commons fa-2x" aria-hidden="true"></i>
+      <i class="fab fa-creative-commons-by fa-2x" aria-hidden="true"></i>
+      
+        <i class="fab fa-creative-commons-nc fa-2x" aria-hidden="true"></i>
+      
+      
+        <i class="fab fa-creative-commons-nd fa-2x" aria-hidden="true"></i>
+      
+    </a>
+  </p>
+
+
+
+
+
+  <p class="powered-by text-center">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://hugoblox.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Hugo Blox Builder</a> — the free, <a href="https://github.com/HugoBlox/hugo-blox-builder" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+
+</footer>
+
+    </div>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

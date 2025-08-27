@@ -1,0 +1,5 @@
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+  {{ range (slice .item) }}
+    {{ partial "views/compact--item.html" (dict "item" .) }}
+  {{ end }}
+</div>

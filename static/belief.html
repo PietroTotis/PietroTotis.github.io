@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html class="reveal-full-page">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>XAI seminar</title>
+
+    <link rel="stylesheet" href="belief_files/reset.css">
+    <link rel="stylesheet" href="belief_files/reveal.css">
+    <link rel="stylesheet" href="belief_files/custom.css">
+    <link rel="stylesheet" href="belief_files/kuleuven.css">
+
+    <link rel="stylesheet" href="belief_files/simplemenu.css">
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="belief_files/monokai.css">
+    <script src="belief_files/polyfill.min.js"></script>
+    <script id="MathJax-script" async="" src="belief_files/tex-mml-chtml.js"></script>
+    <script src="belief_files/simplemenu.js"></script>
+    <script src="belief_files/reveald3.js"></script>
+    <script type="text/javascript" src="belief_files/viewer-static.min.js"></script>
+    <style type="text/css">
+        .CtxtMenu_InfoClose {
+            top: .2em;
+            right: .2em;
+        }
+
+        .CtxtMenu_InfoContent {
+            overflow: auto;
+            text-align: left;
+            font-size: 80%;
+            padding: .4em .6em;
+            border: 1px inset;
+            margin: 1em 0px;
+            max-height: 20em;
+            max-width: 30em;
+            background-color: #EEEEEE;
+            white-space: normal;
+        }
+
+        .CtxtMenu_Info.CtxtMenu_MousePost {
+            outline: none;
+        }
+
+        .CtxtMenu_Info {
+            position: fixed;
+            left: 50%;
+            width: auto;
+            text-align: center;
+            border: 3px outset;
+            padding: 1em 2em;
+            background-color: #DDDDDD;
+            color: black;
+            cursor: default;
+            font-family: message-box;
+            font-size: 120%;
+            font-style: normal;
+            text-indent: 0;
+            text-transform: none;
+            line-height: normal;
+            letter-spacing: normal;
+            word-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            float: none;
+            z-index: 201;
+            border-radius: 15px;
+            /* Opera 10.5 and IE9 */
+            -webkit-border-radius: 15px;
+            /* Safari and Chrome */
+            -moz-border-radius: 15px;
+            /* Firefox */
+            -khtml-border-radius: 15px;
+            /* Konqueror */
+            box-shadow: 0px 10px 20px #808080;
+            /* Opera 10.5 and IE9 */
+            -webkit-box-shadow: 0px 10px 20px #808080;
+            /* Safari 3 & Chrome */
+            -moz-box-shadow: 0px 10px 20px #808080;
+            /* Forefox 3.5 */
+            -khtml-box-shadow: 0px 10px 20px #808080;
+            /* Konqueror */
+            filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true");
+            /* IE */
+        }
+    </style>
+    <style type="text/css">
+        .CtxtMenu_MenuClose {
+            position: absolute;
+            cursor: pointer;
+            display: inline-block;
+            border: 2px solid #AAA;
+            border-radius: 18px;
+            -webkit-border-radius: 18px;
+            /* Safari and Chrome */
+            -moz-border-radius: 18px;
+            /* Firefox */
+            -khtml-border-radius: 18px;
+            /* Konqueror */
+            font-family: "Courier New", Courier;
+            font-size: 24px;
+            color: #F0F0F0
+        }
+
+        .CtxtMenu_MenuClose span {
+            display: block;
+            background-color: #AAA;
+            border: 1.5px solid;
+            border-radius: 18px;
+            -webkit-border-radius: 18px;
+            /* Safari and Chrome */
+            -moz-border-radius: 18px;
+            /* Firefox */
+            -khtml-border-radius: 18px;
+            /* Konqueror */
+            line-height: 0;
+            padding: 8px 0 6px
+                /* may need to be browser-specific */
+        }
+
+        .CtxtMenu_MenuClose:hover {
+            color: white !important;
+            border: 2px solid #CCC !important
+        }
+
+        .CtxtMenu_MenuClose:hover span {
+            background-color: #CCC !important
+        }
+
+        .CtxtMenu_MenuClose:hover:focus {
+            outline: none
+        }
+    </style>
+    <style type="text/css">
+        .CtxtMenu_Menu {
+            position: absolute;
+            background-color: white;
+            color: black;
+            width: auto;
+            padding: 5px 0px;
+            border: 1px solid #CCCCCC;
+            margin: 0;
+            cursor: default;
+            font: menu;
+            text-align: left;
+            text-indent: 0;
+            text-transform: none;
+            line-height: normal;
+            letter-spacing: normal;
+            word-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            float: none;
+            z-index: 201;
+            border-radius: 5px;
+            /* Opera 10.5 and IE9 */
+            -webkit-border-radius: 5px;
+            /* Safari and Chrome */
+            -moz-border-radius: 5px;
+            /* Firefox */
+            -khtml-border-radius: 5px;
+            /* Konqueror */
+            box-shadow: 0px 10px 20px #808080;
+            /* Opera 10.5 and IE9 */
+            -webkit-box-shadow: 0px 10px 20px #808080;
+            /* Safari 3 & Chrome */
+            -moz-box-shadow: 0px 10px 20px #808080;
+            /* Forefox 3.5 */
+            -khtml-box-shadow: 0px 10px 20px #808080;
+            /* Konqueror */
+        }
+
+        .CtxtMenu_MenuItem {
+            padding: 1px 2em;
+            background: transparent;
+        }
+
+        .CtxtMenu_MenuArrow {
+            position: absolute;
+            right: .5em;
+            padding-top: .25em;
+            color: #666666;
+            font-family: null;
+            font-size: .75em
+        }
+
+        .CtxtMenu_MenuActive .CtxtMenu_MenuArrow {
+            color: white
+        }
+
+        .CtxtMenu_MenuArrow.CtxtMenu_RTL {
+            left: .5em;
+            right: auto
+        }
+
+        .CtxtMenu_MenuCheck {
+            position: absolute;
+            left: .7em;
+            font-family: null
+        }
+
+        .CtxtMenu_MenuCheck.CtxtMenu_RTL {
+            right: .7em;
+            left: auto
+        }
+
+        .CtxtMenu_MenuRadioCheck {
+            position: absolute;
+            left: .7em;
+        }
+
+        .CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {
+            right: .7em;
+            left: auto
+        }
+
+        .CtxtMenu_MenuInputBox {
+            padding-left: 1em;
+            right: .5em;
+            color: #666666;
+            font-family: null;
+        }
+
+        .CtxtMenu_MenuInputBox.CtxtMenu_RTL {
+            left: .1em;
+        }
+
+        .CtxtMenu_MenuComboBox {
+            left: .1em;
+            padding-bottom: .5em;
+        }
+
+        .CtxtMenu_MenuSlider {
+            left: .1em;
+        }
+
+        .CtxtMenu_SliderValue {
+            position: absolute;
+            right: .1em;
+            padding-top: .25em;
+            color: #333333;
+            font-size: .75em
+        }
+
+        .CtxtMenu_SliderBar {
+            outline: none;
+            background: #d3d3d3
+        }
+
+        .CtxtMenu_MenuLabel {
+            padding: 1px 2em 3px 1.33em;
+            font-style: italic
+        }
+
+        .CtxtMenu_MenuRule {
+            border-top: 1px solid #DDDDDD;
+            margin: 4px 3px;
+        }
+
+        .CtxtMenu_MenuDisabled {
+            color: GrayText
+        }
+
+        .CtxtMenu_MenuActive {
+            background-color: #606872;
+            color: white;
+        }
+
+        .CtxtMenu_MenuDisabled:focus {
+            background-color: #E8E8E8
+        }
+
+        .CtxtMenu_MenuLabel:focus {
+            background-color: #E8E8E8
+        }
+
+        .CtxtMenu_ContextMenu:focus {
+            outline: none
+        }
+
+        .CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {
+            outline: none
+        }
+
+        .CtxtMenu_SelectionMenu {
+            position: relative;
+            float: left;
+            border-bottom: none;
+            -webkit-box-shadow: none;
+            -webkit-border-radius: 0px;
+        }
+
+        .CtxtMenu_SelectionItem {
+            padding-right: 1em;
+        }
+
+        .CtxtMenu_Selection {
+            right: 40%;
+            width: 50%;
+        }
+
+        .CtxtMenu_SelectionBox {
+            padding: 0em;
+            max-height: 20em;
+            max-width: none;
+            background-color: #FFFFFF;
+        }
+
+        .CtxtMenu_SelectionDivider {
+            clear: both;
+            border-top: 2px solid #000000;
+        }
+
+        .CtxtMenu_Menu .CtxtMenu_MenuClose {
+            top: -10px;
+            left: -10px
+        }
+    </style>
+    <style type="text/css"></style>
+    <style type="text/css">
+        div.mxTooltip {
+            -webkit-box-shadow: 3px 3px 12px #C0C0C0;
+            -moz-box-shadow: 3px 3px 12px #C0C0C0;
+            box-shadow: 3px 3px 12px #C0C0C0;
+            background: #FFFFCC;
+            border-style: solid;
+            border-width: 1px;
+            border-color: black;
+            font-family: Arial;
+            font-size: 8pt;
+            position: absolute;
+            cursor: default;
+            padding: 4px;
+            color: black;
+        }
+
+        td.mxPopupMenuIcon div {
+            width: 16px;
+            height: 16px;
+        }
+
+        html div.mxPopupMenu {
+            -webkit-box-shadow: 2px 2px 3px #d5d5d5;
+            -moz-box-shadow: 2px 2px 3px #d5d5d5;
+            box-shadow: 2px 2px 3px #d5d5d5;
+            _filter: progid:DXImageTransform.Microsoft.DropShadow(OffX=2, OffY=2, Color='#d0d0d0', Positive='true');
+            background: white;
+            position: absolute;
+            border: 3px solid #e7e7e7;
+            padding: 3px;
+        }
+
+        html table.mxPopupMenu {
+            border-collapse: collapse;
+            margin: 0px;
+        }
+
+        html td.mxPopupMenuItem {
+            padding: 7px 30px 7px 30px;
+            font-family: Helvetica Neue, Helvetica, Arial Unicode MS, Arial;
+            font-size: 10pt;
+        }
+
+        html td.mxPopupMenuIcon {
+            background-color: white;
+            padding: 0px;
+        }
+
+        td.mxPopupMenuIcon .geIcon {
+            padding: 2px;
+            padding-bottom: 4px;
+            margin: 2px;
+            border: 1px solid transparent;
+            opacity: 0.5;
+            _width: 26px;
+            _height: 26px;
+        }
+
+        td.mxPopupMenuIcon .geIcon:hover {
+            border: 1px solid gray;
+            border-radius: 2px;
+            opacity: 1;
+        }
+
+        html tr.mxPopupMenuItemHover {
+            background-color: #eeeeee;
+            color: black;
+        }
+
+        table.mxPopupMenu hr {
+            color: #cccccc;
+            background-color: #cccccc;
+            border: none;
+            height: 1px;
+        }
+
+        table.mxPopupMenu tr {
+            font-size: 4pt;
+        }
+
+        .geDialog,
+        .geDialog table {
+            font-family: Helvetica Neue, Helvetica, Arial Unicode MS, Arial;
+            font-size: 10pt;
+            border: none;
+            margin: 0px;
+        }
+
+        .geDialog {
+            position: absolute;
+            background: white;
+            overflow: hidden;
+            padding: 30px;
+            border: 1px solid #acacac;
+            -webkit-box-shadow: 0px 0px 2px 2px #d5d5d5;
+            -moz-box-shadow: 0px 0px 2px 2px #d5d5d5;
+            box-shadow: 0px 0px 2px 2px #d5d5d5;
+            _filter: progid:DXImageTransform.Microsoft.DropShadow(OffX=2, OffY=2, Color='#d5d5d5', Positive='true');
+            z-index: 2;
+        }
+
+        .geDialogClose {
+            position: absolute;
+            width: 9px;
+            height: 9px;
+            opacity: 0.5;
+            cursor: pointer;
+            _filter: alpha(opacity=50);
+        }
+
+        .geDialogClose:hover {
+            opacity: 1;
+        }
+
+        .geDialogTitle {
+            box-sizing: border-box;
+            white-space: nowrap;
+            background: rgb(229, 229, 229);
+            border-bottom: 1px solid rgb(192, 192, 192);
+            font-size: 15px;
+            font-weight: bold;
+            text-align: center;
+            color: rgb(35, 86, 149);
+        }
+
+        .geDialogFooter {
+            background: whiteSmoke;
+            white-space: nowrap;
+            text-align: right;
+            box-sizing: border-box;
+            border-top: 1px solid #e5e5e5;
+            color: darkGray;
+        }
+
+        .geBtn {
+            background-color: #f5f5f5;
+            border-radius: 2px;
+            border: 1px solid #d8d8d8;
+            color: #333;
+            cursor: default;
+            font-size: 11px;
+            font-weight: bold;
+            height: 29px;
+            line-height: 27px;
+            margin: 0 0 0 8px;
+            min-width: 72px;
+            outline: 0;
+            padding: 0 8px;
+            cursor: pointer;
+        }
+
+        .geBtn:hover,
+        .geBtn:focus {
+            -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+            -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #c6c6c6;
+            background-color: #f8f8f8;
+            background-image: linear-gradient(#f8f8f8 0px, #f1f1f1 100%);
+            color: #111;
+        }
+
+        .geBtn:disabled {
+            opacity: .5;
+        }
+
+        .gePrimaryBtn {
+            background-color: #4d90fe;
+            background-image: linear-gradient(#4d90fe 0px, #4787ed 100%);
+            border: 1px solid #3079ed;
+            color: #fff;
+        }
+
+        .gePrimaryBtn:hover,
+        .gePrimaryBtn:focus {
+            background-color: #357ae8;
+            background-image: linear-gradient(#4d90fe 0px, #357ae8 100%);
+            border: 1px solid #2f5bb7;
+            color: #fff;
+        }
+
+        .gePrimaryBtn:disabled {
+            opacity: .5;
+        }
+    </style>
+    <script type="text/javascript" src="belief_files/external.js"></script>
+    <style type="text/css">
+        .hljs-ln {
+            border-collapse: collapse
+        }
+
+        .hljs-ln td {
+            padding: 0
+        }
+
+        .hljs-ln-n:before {
+            content: attr(data-line-number)
+        }
+    </style>
+    <style id="MJX-CHTML-styles">
+        mjx-container[jax="CHTML"] {
+            line-height: 0;
+        }
+
+        mjx-container [space="1"] {
+            margin-left: .111em;
+        }
+
+        mjx-container [space="2"] {
+            margin-left: .167em;
+        }
+
+        mjx-container [space="3"] {
+            margin-left: .222em;
+        }
+
+        mjx-container [space="4"] {
+            margin-left: .278em;
+        }
+
+        mjx-container [space="5"] {
+            margin-left: .333em;
+        }
+
+        mjx-container [rspace="1"] {
+            margin-right: .111em;
+        }
+
+        mjx-container [rspace="2"] {
+            margin-right: .167em;
+        }
+
+        mjx-container [rspace="3"] {
+            margin-right: .222em;
+        }
+
+        mjx-container [rspace="4"] {
+            margin-right: .278em;
+        }
+
+        mjx-container [rspace="5"] {
+            margin-right: .333em;
+        }
+
+        mjx-container [size="s"] {
+            font-size: 70.7%;
+        }
+
+        mjx-container [size="ss"] {
+            font-size: 50%;
+        }
+
+        mjx-container [size="Tn"] {
+            font-size: 60%;
+        }
+
+        mjx-container [size="sm"] {
+            font-size: 85%;
+        }
+
+        mjx-container [size="lg"] {
+            font-size: 120%;
+        }
+
+        mjx-container [size="Lg"] {
+            font-size: 144%;
+        }
+
+        mjx-container [size="LG"] {
+            font-size: 173%;
+        }
+
+        mjx-container [size="hg"] {
+            font-size: 207%;
+        }
+
+        mjx-container [size="HG"] {
+            font-size: 249%;
+        }
+
+        mjx-container [width="full"] {
+            width: 100%;
+        }
+
+        mjx-box {
+            display: inline-block;
+        }
+
+        mjx-block {
+            display: block;
+        }
+
+        mjx-itable {
+            display: inline-table;
+        }
+
+        mjx-row {
+            display: table-row;
+        }
+
+        mjx-row>* {
+            display: table-cell;
+        }
+
+        mjx-mtext {
+            display: inline-block;
+        }
+
+        mjx-mstyle {
+            display: inline-block;
+        }
+
+        mjx-merror {
+            display: inline-block;
+            color: red;
+            background-color: yellow;
+        }
+
+        mjx-mphantom {
+            visibility: hidden;
+        }
+
+        _::-webkit-full-page-media,
+        _:future,
+        :root mjx-container {
+            will-change: opacity;
+        }
+
+        mjx-assistive-mml {
+            position: absolute !important;
+            top: 0px;
+            left: 0px;
+            clip: rect(1px, 1px, 1px, 1px);
+            padding: 1px 0px 0px 0px !important;
+            border: 0px !important;
+            display: block !important;
+            width: auto !important;
+            overflow: hidden !important;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        mjx-assistive-mml[display="block"] {
+            width: 100% !important;
+        }
+
+        mjx-c::before {
+            display: block;
+            width: 0;
+        }
+
+        .MJX-TEX {
+            font-family: MJXZERO, MJXTEX;
+        }
+
+        .TEX-B {
+            font-family: MJXZERO, MJXTEX-B;
+        }
+
+        .TEX-I {
+            font-family: MJXZERO, MJXTEX-I;
+        }
+
+        .TEX-MI {
+            font-family: MJXZERO, MJXTEX-MI;
+        }
+
+        .TEX-BI {
+            font-family: MJXZERO, MJXTEX-BI;
+        }
+
+        .TEX-S1 {
+            font-family: MJXZERO, MJXTEX-S1;
+        }
+
+        .TEX-S2 {
+            font-family: MJXZERO, MJXTEX-S2;
+        }
+
+        .TEX-S3 {
+            font-family: MJXZERO, MJXTEX-S3;
+        }
+
+        .TEX-S4 {
+            font-family: MJXZERO, MJXTEX-S4;
+        }
+
+        .TEX-A {
+            font-family: MJXZERO, MJXTEX-A;
+        }
+
+        .TEX-C {
+            font-family: MJXZERO, MJXTEX-C;
+        }
+
+        .TEX-CB {
+            font-family: MJXZERO, MJXTEX-CB;
+        }
+
+        .TEX-FR {
+            font-family: MJXZERO, MJXTEX-FR;
+        }
+
+        .TEX-FRB {
+            font-family: MJXZERO, MJXTEX-FRB;
+        }
+
+        .TEX-SS {
+            font-family: MJXZERO, MJXTEX-SS;
+        }
+
+        .TEX-SSB {
+            font-family: MJXZERO, MJXTEX-SSB;
+        }
+
+        .TEX-SSI {
+            font-family: MJXZERO, MJXTEX-SSI;
+        }
+
+        .TEX-SC {
+            font-family: MJXZERO, MJXTEX-SC;
+        }
+
+        .TEX-T {
+            font-family: MJXZERO, MJXTEX-T;
+        }
+
+        .TEX-V {
+            font-family: MJXZERO, MJXTEX-V;
+        }
+
+        .TEX-VB {
+            font-family: MJXZERO, MJXTEX-VB;
+        }
+
+        mjx-stretchy-v mjx-c,
+        mjx-stretchy-h mjx-c {
+            font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+        }
+
+        @font-face
+
+        /* 0 */
+            {
+            font-family: MJXZERO;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 1 */
+            {
+            font-family: MJXTEX;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 2 */
+            {
+            font-family: MJXTEX-B;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 3 */
+            {
+            font-family: MJXTEX-I;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 4 */
+            {
+            font-family: MJXTEX-MI;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 5 */
+            {
+            font-family: MJXTEX-BI;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 6 */
+            {
+            font-family: MJXTEX-S1;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 7 */
+            {
+            font-family: MJXTEX-S2;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 8 */
+            {
+            font-family: MJXTEX-S3;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 9 */
+            {
+            font-family: MJXTEX-S4;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 10 */
+            {
+            font-family: MJXTEX-A;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 11 */
+            {
+            font-family: MJXTEX-C;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 12 */
+            {
+            font-family: MJXTEX-CB;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 13 */
+            {
+            font-family: MJXTEX-FR;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 14 */
+            {
+            font-family: MJXTEX-FRB;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 15 */
+            {
+            font-family: MJXTEX-SS;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 16 */
+            {
+            font-family: MJXTEX-SSB;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 17 */
+            {
+            font-family: MJXTEX-SSI;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 18 */
+            {
+            font-family: MJXTEX-SC;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 19 */
+            {
+            font-family: MJXTEX-T;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 20 */
+            {
+            font-family: MJXTEX-V;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+        }
+
+        @font-face
+
+        /* 21 */
+            {
+            font-family: MJXTEX-VB;
+            src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+        }
+    </style>
+    <link rel="stylesheet" href="belief_files/katex.min.css">
+    <script type="text/javascript" src="belief_files/katex.min.js"></script>
+    <script type="text/javascript" src="belief_files/auto-render.min.js"></script>
+    <style type="text/css">
+        [data-auto-animate="running"] [data-auto-animate-target="unmatched"] {
+            transition: opacity 0.8s ease 0.2s;
+        }
+    </style>
+</head>
+
+<body class="reveal-viewport" cz-shortcut-listen="true">
+    <div class="reveal slide center focused has-vertical-slides has-horizontal-slides ready" role="application"
+        data-transition-speed="default" data-background-transition="fade">
+
+        <div class="slides">
+            <section data-auto-animate="" data-external="Slides/15-Joint.html" data-simplemenuname="The joint"
+                style=" display: block;" class="present" style="padding:0">
+
+                <div style="display:flex" data-auto-animate-target="unmatched">
+                    <div style="font-size:0.68em;height:100%;" "="">
+        <pre class=" ampl code-wrapper"> <code style="width:fit-content;" data-id="code-animation" data-trim=""
+                            data-noescape=""
+                            class="hljs "><table class="hljs-ln"><tbody><tr ><td class="hljs-ln-line hljs-ln-code" data-line-number="1">0.6<span class="hljs-symbol">::</span>bias(hotel_X).</td></tr><tr ><td class="hljs-ln-line hljs-ln-code" data-line-number="2">0.8<span class="hljs-symbol">::</span>bias(hotel_Y).</td></tr><tr ><td class="hljs-ln-line hljs-ln-code" data-line-number="3">0.4<span class="hljs-symbol">::</span>bias(expensive).</td></tr><tr ><td class="hljs-ln-line hljs-ln-code" data-line-number="4">0.2<span class="hljs-symbol">::</span>bias(noise).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="5"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="6"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="7"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="8"> </td></tr><tr ><td class="hljs-ln-line hljs-ln-code" data-line-number="9">arg(X) <span class="hljs-symbol">:-</span> bias(X).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="10"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="11"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="12"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="13"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="14"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="15"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="16"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="17">      </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="18">                                            </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="19"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="20"> </td></tr><tr ><td class="hljs-ln-line hljs-ln-code" data-line-number="21"><span class="hljs-keyword">query</span>(arg(X)).</td></tr></tbody></table></code>
+                        </pre>
+                    </div>
+                    <div data-id="text"
+                        style="margin-left:30px; margin-top:30px; font-size:0.7em; display:flex; flex-direction: column; align-items:flex-end;">
+                        <span>hotel_X:</span>
+                        <span>hotel_Y:</span>
+                        <span>expensive:</span>
+                        <span>noise:</span>
+                    </div>
+                    <div
+                        style="margin-left:15px; margin-top:30px; font-size:0.7em; display:flex; flex-direction: column;">
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box1" class="prob_bar" style="width:225px;">
+                            </div>
+                            <span data-id="txt1">0.6</span>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box2" class="prob_bar" style="width:300px;"></div>
+                            <span data-id="txt2">0.8</span>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box4" class="prob_bar" style="width:150px;"></div>
+                            <span data-id="txt4">0.4</span>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box3" class="prob_bar" style="width:75px;">
+                            </div>
+                            <span data-id="txt3">0.2</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div style="font-size:0.8em" data-auto-animate-target="unmatched">
+                    If arguments are truly independent then the bias is the only contribution to their belief.
+                </div>
+            </section>
+            <section data-auto-animate="" data-external="Slides/15.1-Joint2.html" data-simplemenuname="The joint"
+                class="future" aria-hidden="true" style="top: 34.5px; display: block;" hidden="">
+
+
+                <div style="display:flex">
+                    <div style="font-size:0.68em;height:100%">
+                        <pre class="ampl code-wrapper">    <code style="width:fit-content;" data-id="code-animation" data-trim="" data-noescape="" class="hljs "><table class="hljs-ln"><tbody><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="1">0.6<span class="hljs-symbol">::</span>bias(hotel_X).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="2">0.8<span class="hljs-symbol">::</span>bias(hotel_Y).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="3">0.4<span class="hljs-symbol">::</span>bias(expensive).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="4">0.2<span class="hljs-symbol">::</span>bias(noise).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="5"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="6"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="7"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="8"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="9">arg(X) <span class="hljs-symbol">:-</span> bias(X).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="10"> </td></tr><tr ><td class="hljs-ln-line hljs-ln-code" data-line-number="11">0.7<span class="hljs-symbol">::</span><span class="hljs-symbol">¬</span>arg(hotel_Y) <span class="hljs-symbol">:-</span> arg(hotel_X).</td></tr><tr ><td class="hljs-ln-line hljs-ln-code" data-line-number="12">0.4<span class="hljs-symbol">::</span><span class="hljs-symbol">¬</span>arg(hotel_X) <span class="hljs-symbol">:-</span> arg(hotel_Y).</td></tr><tr ><td class="hljs-ln-line hljs-ln-code" data-line-number="13">0.8<span class="hljs-symbol">::</span><span class="hljs-symbol">¬</span>arg(hotel_Y) <span class="hljs-symbol">:-</span> arg(noise).</td></tr><tr ><td class="hljs-ln-line hljs-ln-code" data-line-number="14">0.9<span class="hljs-symbol">::</span><span class="hljs-symbol">¬</span>arg(hotel_X) <span class="hljs-symbol">:-</span> arg(expensive).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="15"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="16">                                            </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="17">                                           </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="18"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="19"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="20"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="21"><span class="hljs-keyword">query</span>(arg(X)).</td></tr></tbody></table></code>
+</pre>
+                    </div>
+                    <div data-id="text"
+                        style="margin-left:30px; margin-top:30px; font-size:0.7em; display:flex; flex-direction: column; align-items:flex-end;">
+                        <span>hotel_X:</span>
+                        <span>hotel_Y:</span>
+                        <span>expensive:</span>
+                        <span>noise:</span>
+                    </div>
+                    <div
+                        style="margin-left:15px; margin-top:30px; font-size:0.7em; display:flex; flex-direction: column;">
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box1" class="prob_bar" style="width:120px;">
+                            </div>
+                            <span data-id="txt1">0.32</span>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box2" class="prob_bar" style="width:199px;"></div>
+                            <span data-id="txt2">0.53</span>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box4" class="prob_bar" style="width:150px;"></div>
+                            <span data-id="txt4">0.4</span>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box3" class="prob_bar" style="width:75px;">
+                            </div><span data-id="txt3">0.2</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div style="font-size:0.8em">
+                    By introducing relations (conditional dependencies) the belief in choosing an hotel decreases
+                    due to the attacks.
+                </div>
+            </section>
+            <section data-auto-animate="" data-simplemenuname="The joint" class="future" aria-hidden="true"
+                style="top: 34.5px; display: block;" hidden="">
+
+
+                <div style="display:flex">
+                    <div style="font-size:0.68em;height:100%">
+                        <pre class="ampl code-wrapper">     <code style="width:fit-content;" data-id="code-animation" data-trim="" data-noescape="" class="hljs "><table class="hljs-ln"><tbody><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="1">0.6<span class="hljs-symbol">::</span>bias(hotel_X).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="2">0.8<span class="hljs-symbol">::</span>bias(hotel_Y).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="3">0.4<span class="hljs-symbol">::</span>bias(expensive).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="4">0.2<span class="hljs-symbol">::</span>bias(noise).</td></tr><tr ><td class="hljs-ln-line hljs-ln-code" data-line-number="5">0.4<span class="hljs-symbol">::</span>bias(anne).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="6"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="7"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="8"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="9">arg(X) <span class="hljs-symbol">:-</span> bias(X).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="10"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="11">0.7<span class="hljs-symbol">::</span><span class="hljs-symbol">¬</span>arg(hotel_Y) <span class="hljs-symbol">:-</span> arg(hotel_X).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="12">0.4<span class="hljs-symbol">::</span><span class="hljs-symbol">¬</span>arg(hotel_X) <span class="hljs-symbol">:-</span> arg(hotel_Y).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="13">0.8<span class="hljs-symbol">::</span><span class="hljs-symbol">¬</span>arg(hotel_Y) <span class="hljs-symbol">:-</span> arg(noise).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="14">0.9<span class="hljs-symbol">::</span><span class="hljs-symbol">¬</span>arg(hotel_X) <span class="hljs-symbol">:-</span> arg(expensive).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="15"> </td></tr><tr ><td class="hljs-ln-line hljs-ln-code" data-line-number="16">0.5<span class="hljs-symbol">::</span>arg(hotel_Y) <span class="hljs-symbol">:-</span> arg(anne).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="17">                                            </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="18"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="19"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="20"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="21"><span class="hljs-keyword">query</span>(arg(X)).</td></tr></tbody></table></code>
+        </pre>
+                    </div>
+                    <div data-id="text"
+                        style="margin-left:30px; margin-top:30px; font-size:0.7em; display:flex; flex-direction: column; align-items:flex-end;">
+                        <span>hotel_X:</span>
+                        <span>hotel_Y:</span>
+                        <span>expensive:</span>
+                        <span>noise:</span>
+                    </div>
+                    <div
+                        style="margin-left:15px; margin-top:30px; font-size:0.7em; display:flex; flex-direction: column;">
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box1" class="prob_bar" style="width:115px;">
+                            </div>
+                            <span data-id="txt1">0.31</span>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box2" class="prob_bar" style="width:220px;"></div>
+                            <span data-id="txt2">0.58</span>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box4" class="prob_bar" style="width:150px;"></div>
+                            <span data-id="txt4">0.4</span>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box3" class="prob_bar" style="width:75px;">
+                            </div>
+                            <span data-id="txt3">0.2</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div style="font-size:0.8em">
+                    Supports increase the belief and the effect propagates to the other arguments.
+                </div>
+            </section>
+            <section data-auto-animate="" data-external="Slides/15.3-Joint4.html" data-simplemenuname="The joint"
+                class="future" aria-hidden="true" style="top: 350px; display: none;" hidden="">
+
+
+                <div style="display:flex">
+                    <div style="font-size:0.68em;height:100%">
+                        <pre class="ampl code-wrapper">    <code style="width:fit-content;" data-id="code-animation" data-trim="" data-noescape="" class="hljs "><table class="hljs-ln"><tbody><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="1">0.6<span class="hljs-symbol">::</span>bias(hotel_X).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="2">0.8<span class="hljs-symbol">::</span>bias(hotel_Y).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="3">0.4<span class="hljs-symbol">::</span>bias(expensive).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="4">0.2<span class="hljs-symbol">::</span>bias(noise).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="5">0.4<span class="hljs-symbol">::</span>bias(anne).</td></tr><tr ><td class="hljs-ln-line hljs-ln-code" data-line-number="6">0.4<span class="hljs-symbol">::</span>bias(week).</td></tr><tr ><td class="hljs-ln-line hljs-ln-code" data-line-number="7">0.6<span class="hljs-symbol">::</span>bias(quiet).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="8"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="9">arg(X) <span class="hljs-symbol">:-</span> bias(X).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="10"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="11">0.7<span class="hljs-symbol">::</span><span class="hljs-symbol">¬</span>arg(hotel_Y) <span class="hljs-symbol">:-</span> arg(hotel_X).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="12">0.4<span class="hljs-symbol">::</span><span class="hljs-symbol">¬</span>arg(hotel_X) <span class="hljs-symbol">:-</span> arg(hotel_Y).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="13">0.8<span class="hljs-symbol">::</span><span class="hljs-symbol">¬</span>arg(hotel_Y) <span class="hljs-symbol">:-</span> arg(noise).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="14">0.9<span class="hljs-symbol">::</span><span class="hljs-symbol">¬</span>arg(hotel_X) <span class="hljs-symbol">:-</span> arg(expensive).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="15"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="16">0.5<span class="hljs-symbol">::</span>arg(hotel_Y) <span class="hljs-symbol">:-</span> arg(anne).</td></tr><tr ><td class="hljs-ln-line hljs-ln-code" data-line-number="17">0.7<span class="hljs-symbol">::</span><span class="hljs-symbol">¬</span>arg(noise) <span class="hljs-symbol">:-</span> arg(week), arg(quiet).  </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="18"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="19"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="20"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="21"><span class="hljs-keyword">query</span>(arg(X)).</td></tr></tbody></table></code>
+</pre>
+                    </div>
+                    <div data-id="text"
+                        style="margin-left:30px; margin-top:30px; font-size:0.7em; display:flex; flex-direction: column; align-items:flex-end;">
+                        <span>hotel_X:</span>
+                        <span>hotel_Y:</span>
+                        <span>expensive:</span>
+                        <span>noise:</span>
+                        <span>week:</span>
+                        <span>quiet:</span>
+                    </div>
+                    <div
+                        style="margin-left:15px; margin-top:30px; font-size:0.7em; display:flex; flex-direction: column;">
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box1" class="prob_bar" style="width:114px;">
+                            </div>
+                            <span data-id="txt1">0.308</span>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box2" class="prob_bar" style="width:230px;"></div>
+                            <span data-id="txt2">0.60</span>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box4" class="prob_bar" style="width:150px;"></div>
+                            <span data-id="txt4">0.4</span>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box3" class="prob_bar" style="width:60px;">
+                            </div><span data-id="txt3">0.16</span>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box5" class="prob_bar" style="width:150px;"></div>
+                            <span data-id="txt5">0.4</span>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box6" class="prob_bar" style="width:225px;">
+                            </div>
+                            <span data-id="txt6">0.6</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="font-size:0.8em">
+                    (Joint) attacks decrease the belief in the target.
+                    <br>&nbsp;
+                </div>
+            </section>
+            <section data-auto-animate="" data-external="Slides/16-Conditional.html" data-simplemenuname="The joint"
+                class="future" aria-hidden="true" style="top: 350px; display: none;" hidden="">
+
+
+                <div style="display:flex">
+                    <div style="font-size:0.68em;height:100%">
+                        <pre class="ampl code-wrapper">    <code style="width:fit-content;" data-id="code-animation" data-trim="" data-noescape="" class="hljs "><table class="hljs-ln"><tbody><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="1">0.6<span class="hljs-symbol">::</span>bias(hotel_X).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="2">0.8<span class="hljs-symbol">::</span>bias(hotel_Y).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="3">0.4<span class="hljs-symbol">::</span>bias(expensive).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="4">0.2<span class="hljs-symbol">::</span>bias(noise).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="5">0.4<span class="hljs-symbol">::</span>bias(anne).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="6">0.4<span class="hljs-symbol">::</span>bias(week).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="7">0.6<span class="hljs-symbol">::</span>bias(quiet).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="8"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="9">arg(X) <span class="hljs-symbol">:-</span> bias(X).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="10"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="11">0.7<span class="hljs-symbol">::</span><span class="hljs-symbol">¬</span>arg(hotel_Y) <span class="hljs-symbol">:-</span> arg(hotel_X).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="12">0.4<span class="hljs-symbol">::</span><span class="hljs-symbol">¬</span>arg(hotel_X) <span class="hljs-symbol">:-</span> arg(hotel_Y).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="13">0.8<span class="hljs-symbol">::</span><span class="hljs-symbol">¬</span>arg(hotel_Y) <span class="hljs-symbol">:-</span> arg(noise).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="14">0.9<span class="hljs-symbol">::</span><span class="hljs-symbol">¬</span>arg(hotel_X) <span class="hljs-symbol">:-</span> arg(expensive).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="15"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="16">0.5<span class="hljs-symbol">::</span>arg(hotel_Y) <span class="hljs-symbol">:-</span> arg(anne).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="17">0.7<span class="hljs-symbol">::</span><span class="hljs-symbol">¬</span>arg(noise) <span class="hljs-symbol">:-</span> arg(week), arg(quiet).  </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="18"> </td></tr><tr ><td class="hljs-ln-line hljs-ln-code" data-line-number="19"><span class="hljs-keyword">evidence</span>(arg(expensive), false).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="20"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="21"><span class="hljs-keyword">query</span>(arg(X)).</td></tr></tbody></table></code>
+</pre>
+                    </div>
+                    <div data-id="text"
+                        style="margin-left:30px; margin-top:30px; font-size:0.7em; display:flex; flex-direction: column; align-items:flex-end;">
+                        <span>hotel_X:</span>
+                        <span>hotel_Y:</span>
+                        <span>expensive:</span>
+                        <span>noise:</span>
+                        <span>week:</span>
+                        <span>quiet:</span>
+                    </div>
+                    <div
+                        style="margin-left:15px; margin-top:30px; font-size:0.7em; display:flex; flex-direction: column;">
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box1" class="prob_bar" style="width:180px;">
+                            </div>
+                            <span data-id="txt1">0.48</span>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box2" class="prob_bar" style="width:191px;"></div>
+                            <span data-id="txt2">0.51</span>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box4" class="prob_bar" style="width:1px;"></div>
+                            <span data-id="txt4">0</span>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box3" class="prob_bar" style="width:60px;">
+                            </div><span data-id="txt3">0.16</span>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box5" class="prob_bar" style="width:150px;"></div>
+                            <span data-id="txt5">0.4</span>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box6" class="prob_bar" style="width:225px;">
+                            </div>
+                            <span data-id="txt6">0.6</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div data-id="cap" style="font-size:0.8em">
+                    <em>Evidence</em> corresponds to the joint belief distribution conditioned to the new
+                    information
+                </div>
+            </section>
+            <section data-auto-animate="" data-external="Slides/16.1-Conditional2.html" data-simplemenuname="The joint"
+                class="future" aria-hidden="true" style="top: 350px; display: none;" hidden="">
+
+
+                <div style="display:flex">
+                    <div style="font-size:0.68em;height:100%">
+                        <pre class="ampl code-wrapper">    <code style="width:fit-content;" data-id="code-animation" data-trim="" data-noescape="" class="hljs "><table class="hljs-ln"><tbody><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="1">0.6<span class="hljs-symbol">::</span>bias(hotel_X).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="2">0.8<span class="hljs-symbol">::</span>bias(hotel_Y).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="3">0.4<span class="hljs-symbol">::</span>bias(expensive).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="4">0.2<span class="hljs-symbol">::</span>bias(noise).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="5">0.4<span class="hljs-symbol">::</span>bias(anne).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="6">0.4<span class="hljs-symbol">::</span>bias(week).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="7">0.6<span class="hljs-symbol">::</span>bias(quiet).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="8"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="9">arg(X) <span class="hljs-symbol">:-</span> bias(X).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="10"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="11">0.7<span class="hljs-symbol">::</span><span class="hljs-symbol">¬</span>arg(hotel_Y) <span class="hljs-symbol">:-</span> arg(hotel_X).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="12">0.4<span class="hljs-symbol">::</span><span class="hljs-symbol">¬</span>arg(hotel_X) <span class="hljs-symbol">:-</span> arg(hotel_Y).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="13">0.8<span class="hljs-symbol">::</span><span class="hljs-symbol">¬</span>arg(hotel_Y) <span class="hljs-symbol">:-</span> arg(noise).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="14">0.9<span class="hljs-symbol">::</span><span class="hljs-symbol">¬</span>arg(hotel_X) <span class="hljs-symbol">:-</span> arg(expensive).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="15"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="16">0.5<span class="hljs-symbol">::</span>arg(hotel_Y) <span class="hljs-symbol">:-</span> arg(anne).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="17">0.7<span class="hljs-symbol">::</span><span class="hljs-symbol">¬</span>arg(noise) <span class="hljs-symbol">:-</span> arg(week), arg(quiet).  </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="18"> </td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="19"><span class="hljs-keyword">evidence</span>(arg(expensive), false).</td></tr><tr ><td class="hljs-ln-line hljs-ln-code" data-line-number="20"><span class="hljs-keyword">evidence</span>(arg(noise), true).</td></tr><tr><td class="hljs-ln-line hljs-ln-code" data-line-number="21"><span class="hljs-keyword">query</span>(arg(X)).</td></tr></tbody></table></code>
+</pre>
+                    </div>
+                    <div data-id="text"
+                        style="margin-left:30px; margin-top:30px; font-size:0.7em; display:flex; flex-direction: column; align-items:flex-end;">
+                        <span>hotel_X:</span>
+                        <span>hotel_Y:</span>
+                        <span>expensive:</span>
+                        <span>noise:</span>
+                        <span>week:</span>
+                        <span>quiet:</span>
+                    </div>
+                    <div
+                        style="margin-left:15px; margin-top:30px; font-size:0.7em; display:flex; flex-direction: column;">
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box1" class="prob_bar" style="width:218px;">
+                            </div>
+                            <span data-id="txt1">0.58</span>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box2" class="prob_bar" style="width:45px;"></div>
+                            <span data-id="txt2">0.12</span>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box4" class="prob_bar" style="width:1px;"></div>
+                            <span data-id="txt4">0</span>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box3" class="prob_bar" style="width:375px;">
+                            </div>
+                            <span data-id="txt3">1</span>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box5" class="prob_bar" style="width:105px;"></div>
+                            <span data-id="txt5">0.28</span>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                            <div data-id="box6" class="prob_bar" style="width:195px;">
+                            </div>
+                            <span data-id="txt6">0.52</span>
+                        </div>
+
+                    </div>
+                </div>
+                <div data-id="cap" style="font-size:0.8em">
+                    <em>Evidence</em> corresponds to the joint belief distribution conditioned to the new
+                    information
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="belief_files/reveal.js"></script>
+    <script src="belief_files/notes.js"></script>
+    <script src="belief_files/markdown.js"></script>
+    <script src="belief_files/highlight.js"></script>
+    <script src="belief_files/math.js"></script>
+    <script>
+        // More info about initialization & config:
+        // - https://revealjs.com/initialization/
+        // - https://revealjs.com/config/
+        Reveal.initialize({
+            hash: true,
+            margin: -0.3,
+
+            // Learn about plugins: https://revealjs.com/plugins/
+            simplemenu: {
+                auto: true
+            },
+            plugins: [Simplemenu, RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX, Reveald3],
+            dependencies: [{
+                src: 'plugin/external/external.js',
+                condition: function () {
+                    return !!document.querySelector('[data-external],[data-external-replace]');
+                }
+            }],
+            highlight: {
+                beforeHighlight: hljs => hljs.registerLanguage("ampl", function (hljs) {
+                    return {
+                        keywords: {
+                            keyword: 'not query evidence'
+                        },
+                        contains: [
+                            {
+                                className: 'type',
+                                begin: '_po',
+                                end: 's'
+                            },
+                            {
+                                className: 'type',
+                                begin: '_ne',
+                                end: 'g'
+                            },
+                            {
+                                className: 'symbol',
+                                begin: /:-|::|¬/
+                            },
+                        ]
+                    };
+                })
+            },
+        })
+    </script>
+    <script src="belief_files/livereload.js" async="" defer="defer"></script>
+
+</body>
+
+</html>

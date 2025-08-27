@@ -15,6 +15,7 @@ date: '2023-01-01'
 lastmod: 2024-10-19T17:04:54+02:00
 featured: false
 draft: false
+show_breadcrumb: true
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
@@ -31,8 +32,7 @@ image:
 #   Otherwise, set `projects = []`.
 projects: []
 publishDate: '2024-10-19T15:04:53.937100Z'
-publication_types:
-- '1'
+publication_types: ["paper-conference"]
 abstract: 'ProbLog is a popular probabilistic logic programming language/tool, widely used for applications requiring to deal with inherent uncertainties in structured domains. In this paper we study connections between ProbLog and a variant of another well-known formalism combining symbolic reasoning and reasoning under uncertainty, i.e. probabilistic argumentation. Specifically, we show that ProbLog is an instance of a form of Probabilistic Abstract Argumentation (PAA) that builds upon Assumption-Based Argumentation (ABA). The connections pave the way towards equipping ProbLog with alternative semantics, inherited from PAA/PABA, as well as obtaining novel argumentation semantics for PAA/PABA, leveraging on prior connections between ProbLog and argumentation. Further, the connections pave the way towards novel forms of argumentative explanations for ProbLog’s outputs'
 summary: 'We show that ProbLog is an instance of a form of Probabilistic Abstract Argumentation (PAA) that builds upon Assumption-Based Argumentation (ABA). The connections pave the way towards equipping ProbLog with alternative semantics, inherited from PAA and ABA.'
 publication: '*Proceedings 39th International Conference on Logic Programming, ICLP

@@ -14,6 +14,7 @@ date: '2021-01-01'
 lastmod: 2022-11-04T12:29:20+01:00
 featured: true
 draft: false
+show_breadcrumb: true
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
@@ -31,14 +32,13 @@ image:
 projects: []
 publishDate: '2022-11-04T11:29:20.115822Z'
 doi: 10.1017/S147106842300008X
-publication_types:
-- '2'
+publication_types: ["article-journal"]
 summary: "We model beliefs in argumentation problems with probabilistic logic programs and show that traditional probabilistic logic programming (PLP) systems cannot reason on this type of programs. We thus present smProblog, a novel PLP system based on ProbLog, where inference and learning over such probabilistic argumentation problems are possible."
 
 abstract: 'Argumentation problems are concerned with determining the acceptability of a set of arguments from their relational structure. When the available information is uncertain, probabilistic argumentation frameworks provide modeling tools to account for it. The first contribution of this paper is a novel interpretation of probabilistic argumentation frameworks as probabilistic logic programs. Probabilistic logic programs are logic programs in which some of the facts are annotated with probabilities. We show that the programs representing probabilistic argumentation frameworks do not satisfy a common assumption in probabilistic logic programming (PLP) semantics, which is, that probabilistic facts fully capture the uncertainty in the domain under investigation. The second contribution of this paper is then a novel PLP semantics for programs where a choice of probabilistic facts does not uniquely determine the truth assignment of the logical atoms. The third contribution of this paper is the implementation of a PLP system supporting this semantics: smProbLog. smProbLog is a novel PLP framework based on the PLP language ProbLog. smProbLog supports many inference and learning tasks typical of PLP, which, together with our first contribution, provide novel reasoning tools for probabilistic argumentation. We evaluate our approach with experiments analyzing the computational cost of the proposed algorithms and their application to a dataset of argumentation problems.'
 
 publication: '*Theory and Practice of Logic Programming*'
-publication_short: "*TPLP*"
+publication_short: "*TPLP 2023*"
 links:
 - name: URL
   url: https://www.cambridge.org/core/journals/theory-and-practice-of-logic-programming/article/smproblog-stable-model-semantics-in-problog-for-probabilistic-argumentation/4C4DAF1C4E5BADA746E4E2F1694AC0A7
@@ -181,8 +181,7 @@ The joint probability (belief) distribution induced by the argument graph resemb
 
 The joint probability distribution can be analyzed with the typical PLP tools and algorithms offered by PLP systems.
 Conditional probabilities, expressed by means of *evidence*, can be queried to study how the beliefs change when new information about the truth of the arguments is provided.
-<iframe src="belief.html" title="Beliefs animation" height="400" width=700" frameBorder="0"></iframe>
-
+<iframe src="/belief.html" title="Beliefs animation" height="400" width="700" frameBorder="0"></iframe>
 Most probable explanation (MPE) queries return the most probable possible world where the given evidence holds. 
 They can thus be used to find the set of beliefs which contribute the most to believing one or more arguments.
 

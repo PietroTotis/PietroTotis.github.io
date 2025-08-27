@@ -20,11 +20,23 @@
     <link rel="icon" type="image/png" href="images/favicon.png">
     <script src="https://kit.fontawesome.com/723061ccca.js" crossorigin="anonymous"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
   </script>
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({TeX: {extensions: ["action.js"] }});
   </script>
+  <script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
   </head>
   <style>/* :root {
   --dark: #445C4C;
@@ -33,12 +45,6 @@
   --mlight: #BFC9CA;
   --light: #D6E2E0;
 } */
-@import url("https://use.fontawesome.com/releases/v5.13.0/css/all.css");
-
-.fa-solid {
-  font-family: "Font Awesome 5 Free";
-  font: 900 normal normal 14px/1 "Font Awesome 5 Free";
-}
 
 :root {
   --dark: #4c566a;

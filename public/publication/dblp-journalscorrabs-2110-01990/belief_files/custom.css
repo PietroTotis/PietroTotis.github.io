@@ -1,0 +1,98 @@
+.example {
+    border-radius: 25px;
+    background-color: rgba(135, 192, 189, 0.7);
+    padding: 20px;
+    font-size: xx-large;
+    text-align: center;
+    margin: 10px;
+}
+
+.def {
+    border-radius: 25px;
+    background-color: rgba(29, 141, 176, 0.5);
+    padding: 20px;
+    font-size: xx-large;
+    text-align: left;
+    margin: 10px;
+}
+
+.fragmented-line {
+    display: flex;
+    /* flex-direction: column;*/
+    justify-content: center;
+    align-items: center;
+}
+
+.ltext {
+    text-align: left;
+}
+
+#nolines tbody tr td {
+    border: none;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    align-items: center;
+}
+
+#date {
+    margin: 0px;
+}
+
+.footer img {
+    width: 130px;
+    height: auto;
+}
+
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic);
+
+#bq {
+    width: 85%;
+    font-family: Open Sans;
+    font-family: Open Sans;
+    font-style: italic;
+    color: #555555;
+    padding: 1.2em 30px 1em 75px;
+    border-left: 8px solid #78C0A8;
+    line-height: 1.6;
+    position: relative;
+    /* background: #EDEDED; */
+    text-align: left;
+}
+
+#bq::before {
+    font-family: Arial;
+    content: "\201C";
+    color: #78C0A8;
+    font-size: 4em;
+    position: absolute;
+    left: 10px;
+    top: -10px;
+}
+
+#bq::after {
+    content: '';
+}
+
+#bq span {
+    display: block;
+    color: #333333;
+    font-style: normal;
+    font-weight: bold;
+    margin-top: 1em;
+}
+
+.prob_bar {
+    height: 30px;
+    vertical-align: middle;
+    background: #1D8DB0;
+    margin-left: 5px;
+    margin-right: 5px;
+}

@@ -17,11 +17,11 @@ publishDate: 2022-11-09T15:45:40+01:00
 # Legend: 0 = Uncategorized; 1 = Conference paper; 2 = Journal article;
 # 3 = Preprint / Working Paper; 4 = Report; 5 = Book; 6 = Book section;
 # 7 = Thesis; 8 = Patent
-publication_types: ["2"]
+publication_types: ["article-journal"]
 
 # Publication name and optional abbreviated publication name.
 publication: "*Journal of Artificial Intelligence Research*"
-publication_short: "*JAIR*"
+publication_short: "*JAIR 2023*"
 doi: 10.1613/jair.1.14062 
 links:
 - name: URL
@@ -37,6 +37,7 @@ summary: "In this paper we tackle the problem of automating the resolution of co
 tags: [KRR, Journal]
 categories: []
 featured: true
+show_breadcrumb: true
 
 # Custom links (optional).
 #   Uncomment and edit lines below to show custom links.
@@ -49,9 +50,9 @@ featured: true
 url_pdf: https://www.jair.org/index.php/jair/article/view/14062/26884
 url_code: https://github.com/PietroTotis/CoSo
 url_dataset:
-url_poster:
-url_project: 
-url_slides:
+url_poster: 
+url_project: https://www.kuleuven.be/onderzoek/portaal/#/projecten/3E180082?lang=en&hl=en
+url_slides: 
 url_source:
 url_video: 
 

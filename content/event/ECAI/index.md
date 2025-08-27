@@ -33,7 +33,7 @@ tags: [KRR, Lifted Reasoning]
 featured: false
 
 image:
-  caption: 'Image credit: [**Unsplash**](https://unsplash.com/photos/bzdhc5b3Bxs)'
+  caption: 'ECAI 2024'
   focal_point: Right
 
 links:

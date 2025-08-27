@@ -1,0 +1,1825 @@
+<!doctype html>
+<!-- This site was created with Hugo Blox. https://hugoblox.com -->
+<!-- Last Published: August 27, 2025 --><html lang="en-us" dir="ltr"
+      data-wc-theme-default="system">
+  
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=41063&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="generator" content="Hugo Blox Builder 0.4.1" />
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Pietro Totis" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="In this paper we tackle the problem of automating the resolution of combinatorics math word problems. We introduce CoLa, a novel declarative language to express combinatorics math word problems, and CoSo, a solver based on lifted reasoning, which outperforms alternative frameworks." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="http://localhost:41063/publication/coso/" />
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="/css/themes/custom.min.css" />
+  
+
+  
+  
+    
+    <link href="/dist/wc.min.66412b998ac08468152d24203c4b87b9cee6bcf511d07b4d040d809cecafd615.css" rel="stylesheet" />
+  
+
+  
+  
+  
+
+  
+
+  <script>
+     
+    window.hbb = {
+       defaultTheme: document.documentElement.dataset.wcThemeDefault,
+       setDarkTheme: () => {
+        document.documentElement.classList.add("dark");
+        document.documentElement.style.colorScheme = "dark";
+      },
+       setLightTheme: () => {
+        document.documentElement.classList.remove("dark");
+        document.documentElement.style.colorScheme = "light";
+      }
+    }
+
+    console.debug(`Default Hugo Blox Builder theme is ${window.hbb.defaultTheme}`);
+
+    if ("wc-color-theme" in localStorage) {
+      localStorage.getItem("wc-color-theme") === "dark" ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
+    } else {
+      window.hbb.defaultTheme === "dark" ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
+      if (window.hbb.defaultTheme === "system") {
+        window.matchMedia("(prefers-color-scheme: dark)").matches ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
+      }
+    }
+  </script>
+
+  <script>
+    
+    document.addEventListener('DOMContentLoaded', function () {
+      
+      let checkboxes = document.querySelectorAll('li input[type=\'checkbox\'][disabled]');
+      checkboxes.forEach(e => {
+        e.parentElement.parentElement.classList.add('task-list');
+      });
+
+      
+      const liNodes = document.querySelectorAll('.task-list li');
+      liNodes.forEach(nodes => {
+        let textNodes = Array.from(nodes.childNodes).filter(node => node.nodeType === 3 && node.textContent.trim().length > 1);
+        if (textNodes.length > 0) {
+          const span = document.createElement('label');
+          textNodes[0].after(span);  
+          span.appendChild(nodes.querySelector('input[type=\'checkbox\']'));
+          span.appendChild(textNodes[0]);
+        }
+      });
+    });
+  </script>
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  <link rel="icon" type="image/png" href="/media/icon_hu_5cac115d14ed3d49.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu_e7f327b39c12e7ca.png" />
+
+  <link rel="canonical" href="http://localhost:41063/publication/coso/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary_large_image" />
+  
+  <meta property="og:site_name" content="Pietro Totis" />
+  <meta property="og:url" content="http://localhost:41063/publication/coso/" />
+  <meta property="og:title" content="Lifted Reasoning for Combinatorial Counting | Pietro Totis" />
+  <meta property="og:description" content="In this paper we tackle the problem of automating the resolution of combinatorics math word problems. We introduce CoLa, a novel declarative language to express combinatorics math word problems, and CoSo, a solver based on lifted reasoning, which outperforms alternative frameworks." /><meta property="og:image" content="http://localhost:41063/publication/coso/featured.png" />
+    <meta property="twitter:image" content="http://localhost:41063/publication/coso/featured.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2022-11-09T15:45:40&#43;01:00"
+      />
+    
+    <meta property="article:modified_time" content="2022-11-09T15:45:40&#43;01:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "http://localhost:41063/publication/coso/"
+  },
+  "headline": "Lifted Reasoning for Combinatorial Counting",
+  
+  "image": [
+    "http://localhost:41063/publication/coso/featured.png"
+  ],
+  
+  "datePublished": "2022-11-09T15:45:40+01:00",
+  "dateModified": "2022-11-09T15:45:40+01:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Pietro Totis"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pietro Totis",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://localhost:41063/media/icon_hu_1df060215326dd50.png"
+    }
+  },
+  "description": "In this paper we tackle the problem of automating the resolution of combinatorics math word problems. We introduce CoLa, a novel declarative language to express combinatorics math word problems, and CoSo, a solver based on lifted reasoning, which outperforms alternative frameworks."
+}
+</script>
+
+  
+
+  
+
+
+  <title>Lifted Reasoning for Combinatorial Counting | Pietro Totis</title>
+
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <style>
+    @font-face {
+      font-family: 'Inter var';
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url(/dist/font/Inter.var.woff2) format(woff2);
+    }
+  </style>
+
+  
+
+  
+  
+
+
+  
+  
+  
+  
+  
+  
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+  
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="/dist/pagefind/pagefind-ui.be766eb419317a14ec769d216e9779bfe8f3737c80e780f4ba0dafb57a41a482.css" integrity="sha256-vnZutBkxehTsdp0hbpd5v&#43;jzc3yA54D0ug2vtXpBpII=" />
+
+
+<script src="/dist/pagefind/pagefind-ui.87693d7c6f2b3b347ce359d0ede762c033419f0a32b22ce508c335a81d841f1b.js" integrity="sha256-h2k9fG8rOzR841nQ7ediwDNBnwoysizlCMM1qB2EHxs="></script>
+
+
+<script>window.hbb.pagefind = {"baseUrl":"/"};</script>
+
+<style>
+  html.dark {
+    --pagefind-ui-primary: #eeeeee;
+    --pagefind-ui-text: #eeeeee;
+    --pagefind-ui-background: #152028;
+    --pagefind-ui-border: #152028;
+    --pagefind-ui-tag: #152028;
+  }
+
+   
+  .search-close > svg {
+    height: calc(64px * var(--pagefind-ui-scale));
+    width: calc(64px * var(--pagefind-ui-scale));
+  }
+</style>
+
+<script>
+  
+  let searchWrapper = null;
+
+  window.addEventListener('DOMContentLoaded', (event) => {
+    
+    new PagefindUI({
+      element: "#search",
+      showSubResults: true,
+      baseUrl: window.hbb.pagefind.baseUrl,
+      bundlePath: window.hbb.pagefind.baseUrl + "pagefind/",
+    });
+
+    
+    searchWrapper = document.getElementById('search-wrapper');
+
+    
+    let triggers = document.querySelectorAll('[data-search-toggle]');
+    triggers.forEach(trigger =>
+      trigger.addEventListener('click', handleSearchToggle)
+    );
+  });
+
+  function handleSearchToggle(event) {
+    if (!searchWrapper) return;
+
+    const isHidden = searchWrapper.classList.contains('hidden');
+    searchWrapper.classList.toggle('hidden');
+    document.body.style.overflow = isHidden ? 'hidden' : '';
+
+    const searchInput = searchWrapper.querySelector("input");
+    if (searchInput) {
+      searchInput.value = "";
+      searchInput.focus();
+    }
+
+    if (!searchWrapper.classList.contains('hidden')) {
+      let clearTrigger = document.querySelector('.pagefind-ui__search-clear');
+
+      if (clearTrigger && !clearTrigger.hasAttribute('listenerOnClick')) {
+        clearTrigger.setAttribute('listenerOnClick', 'true');
+
+        clearTrigger.addEventListener('click', () => {
+          searchInput.focus();
+        });
+      }
+    }
+  }
+
+  
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && searchWrapper && !searchWrapper.classList.contains('hidden')) {
+      searchWrapper.classList.add('hidden');
+    }
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  <script
+    defer
+    src="/js/hugo-blox-en.min.js"
+    integrity=""
+  ></script>
+
+  
+  
+
+
+
+
+
+
+
+
+  
+    
+      
+      <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+      
+    
+  
+
+
+
+
+</head>
+
+  <body class="dark:bg-hb-dark dark:text-white page-wrapper" id="top">
+    <div id="page-bg"></div>
+    <div class="page-header sticky top-0 z-30">
+      
+      
+      
+        
+        
+        
+          <header id="site-header" class="header">
+  <nav class="navbar px-3 flex justify-left">
+    <div class="order-0 h-100">
+      
+      <a class="navbar-brand" href="/" title="Pietro Totis">
+        Pietro Totis
+      </a>
+    </div>
+    
+    <input id="nav-toggle" type="checkbox" class="hidden" />
+    <label
+      for="nav-toggle"
+      class="order-3 cursor-pointer flex items-center lg:hidden text-dark dark:text-white lg:order-1">
+      <svg id="show-button" class="h-6 fill-current block" viewBox="0 0 20 20">
+        <title>Open Menu</title>
+        <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
+      </svg>
+      <svg id="hide-button" class="h-6 fill-current hidden" viewBox="0 0 20 20">
+        <title>Close Menu</title>
+        <polygon
+          points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
+          transform="rotate(45 10 10)"></polygon>
+      </svg>
+    </label>
+    
+
+    
+    
+    <ul
+      id="nav-menu"
+      class="navbar-nav order-3 hidden lg:flex w-full pb-6 lg:order-1 lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8 justify-left
+      ">
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/"
+        >Bio</a
+        >
+      </li>
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/#papers"
+        >Papers</a
+        >
+      </li>
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/#talks"
+        >Talks</a
+        >
+      </li>
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/#experience"
+        >Experience</a
+        >
+      </li>
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/projects/"
+        >Projects</a
+        >
+      </li>
+      
+      
+      
+    </ul>
+
+    <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0">
+
+      
+      
+      
+      <button
+        aria-label="toggle search"
+        class="text-black hover:text-primary  inline-block px-3 text-xl dark:text-white"
+        data-search-toggle>
+        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512" fill="currentColor"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
+      </button>
+      
+
+      
+      
+      <div class="px-3 text-black hover:text-primary-700 dark:text-white dark:hover:text-primary-300
+            [&.active]:font-bold [&.active]:text-black/90 dark:[&.active]:text-white">
+        <button class="theme-toggle mt-1" accesskey="t" title="appearance">
+          <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" class="dark:hidden">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" class=" dark:block [&:not(dark)]:hidden">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+      </div>
+      
+
+      
+      
+
+      
+      
+    </div>
+  </nav>
+</header>
+
+<div
+  id="search-wrapper"
+  class="hidden fixed inset-0 z-50 bg-white dark:bg-gray-900 flex flex-col overflow-hidden"
+>
+  <div class="flex justify-end p-3">
+    <button
+      aria-label="search"
+      class="search-close text-black hover:text-primary dark:text-white"
+      data-search-toggle
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <div id="search" class="flex-1 overflow-y-auto p-3">
+    
+  </div>
+</div>
+
+
+        
+      
+    </div>
+    <div class="page-body  my-10">
+      
+
+
+
+
+  
+    
+    
+  
+
+
+<div class="mx-auto flex max-w-screen-xl">
+  
+
+
+
+<aside class="hb-sidebar-container max-lg:[transform:translate3d(0,-100%,0)] lg:hidden xl:block">
+  
+  <div class="px-4 pt-4 lg:hidden">
+    
+    
+  </div>
+  <div class="hb-scrollbar lg:h-[calc(100vh-var(--navbar-height))]">
+    <ul class="flex flex-col gap-1 lg:hidden">
+      
+      
+        <li class=""><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/event/"
+    
+  >Recent Talks
+        <span data-hb-sidebar-toggle>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-[18px] min-w-[18px] rounded-sm p-0.5 hover:bg-gray-800/5 dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="origin-center transition-transform rtl:-rotate-180"></path></svg>
+        </span>
+    </a><div class="ltr:pr-0 overflow-hidden">
+        <ul class="hb-sidebar-list"><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/event/ecai/"
+    
+  >Lifted Reasoning for Combinatorial Counting (ECAI)
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/event/public_defence/"
+    
+  >Declarative Modelling and Reasoning for Combinatorial Problem Solving and Argumentation under Uncertainty
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/event/xai/"
+    
+  >Reasoning on Arguments and Beliefs with Probabilistic Logic Programs
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/event/dtai2/"
+    
+  >Lifted Reasoning for Combinatorial Counting
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/event/dtai1/"
+    
+  >Stable Model Semantics in ProbLog and its Applications in Argumentation
+    </a>
+              
+            </li></ul>
+      </div></li>
+        <li class=""><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/projects/"
+    
+  >Projects
+    </a></li>
+        <li class=""><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/experience/"
+    
+  >Experience
+    </a></li>
+        <li class="open"><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/"
+    
+  >Publications
+        <span data-hb-sidebar-toggle>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-[18px] min-w-[18px] rounded-sm p-0.5 hover:bg-gray-800/5 dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="origin-center transition-transform rtl:-rotate-180"></path></svg>
+        </span>
+    </a><div class="ltr:pr-0 overflow-hidden">
+        <ul class="hb-sidebar-list"><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/dblp-journalscorrabs-2308-15891/"
+    
+  >Understanding ProbLog as Probabilistic Argumentation
+    </a>
+              
+            </li><li class="flex flex-col open"><a
+    class="hb-sidebar-custom-link
+      sidebar-active-item bg-primary-100 font-semibold text-primary-800 dark:bg-primary-300 dark:text-primary-900"
+    href="/publication/coso/"
+    
+  >Lifted Reasoning for Combinatorial Counting
+    </a>
+  
+    <ul class="hb-sidebar-mobile-toc"><li>
+              <a
+                href="#"
+                class="hb-docs-link"
+              ></a>
+            </li>
+          </ul>
+  
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/dblp-journalstplp-kiesel-tk-22/"
+    
+  >Efficient Knowledge Compilation Beyond Weighted Model Counting
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/dblp-confemnlp-suster-ftkdrd-21/"
+    
+  >Mapping Probability Word Problems to Executable Representations
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/dblp-journalscorrabs-2110-01990/"
+    
+  >smProbLog: Stable Model Semantics in ProbLog for Probabilistic Argumentation
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/dblp-confclic-it-namor-tgs-19/"
+    
+  >Mining Italian Short Argumentative Texts
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/dblp-confcilc-bortoli-itdp-19/"
+    
+  >Towards Distributed Computation of Answer Sets
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/dblp-confclic-it-totis-s-18/"
+    
+  >Classifying Italian newspaper text: news or editorial?
+    </a>
+              
+            </li></ul>
+      </div></li>
+        <li class=""><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/project/"
+    
+  >Projects
+        <span data-hb-sidebar-toggle>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-[18px] min-w-[18px] rounded-sm p-0.5 hover:bg-gray-800/5 dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="origin-center transition-transform rtl:-rotate-180"></path></svg>
+        </span>
+    </a><div class="ltr:pr-0 overflow-hidden">
+        <ul class="hb-sidebar-list"><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/project/nlp4plp/"
+    
+  >Solving Combinatorial and Probabilistic Problems in Natural Language 
+    </a>
+              
+            </li></ul>
+      </div></li>
+        <li class=""><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/post/"
+    
+  >Blog
+    </a></li>
+        <li class=""><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/teaching/"
+    
+  >Blog
+    </a></li>
+    </ul>
+
+    <div class="max-xl:hidden h-0 w-64 shrink-0"></div></div>
+
+</aside>
+  
+
+<nav class="hb-toc order-last hidden w-64 shrink-0 xl:block print:hidden px-4" aria-label="table of contents">
+  
+
+
+
+
+
+
+
+
+
+
+
+  <div class="hb-scrollbar text-sm [hyphens:auto] sticky top-16 overflow-y-auto pr-4 pt-6 max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] -mr-4 rtl:-ml-4"><p class="mb-4 font-semibold tracking-tight">On this page</p><ul>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#problem-combinatorics-math-word-problems">Problem: combinatorics math word problems</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#cola-modelling-combinatorics-math-word-problems">CoLa: modelling combinatorics math word problems</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-8 rtl:pr-8 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#multisets">Multisets</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-8 rtl:pr-8 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#configurations">Configurations</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-8 rtl:pr-8 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#constraints">Constraints</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#coso-reasoning-over-combinatorics-math-word-problems">CoSo: reasoning over combinatorics math word problems</a>
+      </li></ul>
+
+  
+  
+    
+    
+  
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+  </nav>
+
+
+  <article class="w-full break-words flex min-h-[calc(100vh-var(--navbar-height))] min-w-0 justify-center pb-8 pr-[calc(env(safe-area-inset-right)-1.5rem)]">
+    <main class="w-full min-w-0 max-w-6xl px-6 pt-4 md:px-12">
+
+      
+      <div class="mb-4">
+        <div class="mt-1.5 flex items-center gap-1 overflow-hidden text-sm text-gray-500 dark:text-gray-400">
+      <div class="whitespace-nowrap transition-colors min-w-[24px] overflow-hidden text-ellipsis hover:text-gray-900 dark:hover:text-gray-100">
+        <a href="http://localhost:41063/publication/">Publications</a>
+      </div><svg class="w-3.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m8.25 4.5l7.5 7.5l-7.5 7.5"/></svg><div class="whitespace-nowrap font-medium text-gray-700 dark:text-gray-100">Lifted Reasoning for Combinatorial Counting</div>
+</div>
+
+      </div>
+      
+
+      <h1 class="mt-2 text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Lifted Reasoning for Combinatorial Counting</h1>
+
+      <div class="mt-4 mb-16">
+      <div class="text-gray-500 dark:text-gray-300 text-sm flex items-center flex-wrap gap-y-2"><span class="mr-1">Nov 9, 2022</span><span class="mx-1">·</span>
+        
+          
+          
+          <div class="group inline-flex items-center text-current gap-x-1.5 mx-1">
+            
+            <div >Pietro Totis</div>
+          </div>
+          
+        
+          
+          <span class="mr-1">,</span>
+          <div class="group inline-flex items-center text-current gap-x-1.5 mx-1">
+            
+            <div >Jesse Davis</div>
+          </div>
+          
+        
+          
+          <span class="mr-1">,</span>
+          <div class="group inline-flex items-center text-current gap-x-1.5 mx-1">
+            
+            <div >Luc De Raedt</div>
+          </div>
+          
+        
+          
+          <span class="mr-1">,</span>
+          <div class="group inline-flex items-center text-current gap-x-1.5 mx-1">
+            
+            <div >Angelika Kimmig</div>
+          </div>
+          
+        
+
+        
+        <span class="mx-1">·</span>
+        <span class="mx-1">
+          6 min read
+        </span>
+        
+        </div>
+
+        <div class="mt-3">
+          
+
+
+
+
+<div class="">
+  
+  
+
+
+
+
+
+
+
+
+  
+    
+  
+
+
+
+<a class="hb-attachment-link hb-attachment-large" href="https://www.jair.org/index.php/jair/article/view/14062/26884" target="_blank" rel="noopener">
+  <svg style="height: 1em" class='inline-block' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9"/></svg>
+  PDF
+</a>
+
+
+
+<a class="hb-attachment-link hb-attachment-large" href="/publication/coso/cite.bib" target="_blank" data-filename="/publication/coso/cite.bib">
+  <svg style="height: 1em" class='inline-block' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75"/></svg>
+  Cite
+</a>
+
+
+  
+  
+    
+  
+<a class="hb-attachment-link hb-attachment-large" href="https://github.com/PietroTotis/CoSo" target="_blank" rel="noopener">
+  <svg style="height: 1em" class='inline-block' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg>
+  Code
+</a>
+
+
+
+
+<a class="hb-attachment-link hb-attachment-large" href="https://www.kuleuven.be/onderzoek/portaal/#/projecten/3E180082?lang=en&amp;hl=en" target="_blank" rel="noopener">
+  Project
+</a>
+
+
+
+
+
+
+
+
+
+<a class="hb-attachment-link hb-attachment-large" href="https://doi.org/10.1613/jair.1.14062" target="_blank" rel="noopener">
+  DOI
+</a>
+
+
+  
+  
+  
+    
+  
+  
+  
+  
+  
+    
+  
+  <a class="hb-attachment-link hb-attachment-large" href="https://www.jair.org/index.php/jair/article/view/14062" target="_blank" rel="noopener">
+    <svg style="height: 1em" class='inline-block' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"/></svg>
+    URL</a>
+
+
+</div>
+
+
+        </div>
+      </div>
+
+
+
+      
+      
+      
+      
+      
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="article-header article-container featured-image-wrapper mt-4 mb-16" style="max-width: 720px; max-height: 468px;">
+        <div style="position: relative">
+          <img src="/publication/coso/featured_hu_2d7123de7663e61a.webp" width="720" height="468" alt="" class="featured-image">
+          
+        </div>
+      </div>
+      
+
+      
+      
+        <div class="max-w-prose grid grid-cols-1 md:grid-cols-[200px_auto] gap-4 my-6">
+
+        
+          <div class="font-bold text-2xl">Abstract</div>
+          <div>Combinatorics math problems are often used as a benchmark to test human cognitive and logical problem-solving skills. These problems are concerned with counting the number of solutions that exist in a specific scenario that is sketched in natural language. Humans are adept at solving such problems as they can identify commonly occurring structures in the questions for which a closed-form formula exists for computing the answer. These formulas exploit the exchangeability of objects and symmetries to avoid a brute-force enumeration of all possible solutions. Unfortunately, current AI approaches are still unable to solve combinatorial problems in this way. This paper aims to fill this gap by developing novel AI techniques for representing and solving such problems. It makes the following five contributions. First, we identify a class of combinatorics math problems which traditional lifted counting techniques fail to model or solve efficiently. Second, we propose a novel declarative language for this class of problems. Third, we propose novel lifted solving algorithms bridging probabilistic inference techniques and constraint programming. Fourth, we implement them in a lifted solver that solves efficiently the class of problems under investigation. Finally, we evaluate our contributions on a real-world combinatorics math problems dataset and synthetic benchmarks.</div>
+        
+
+        
+        
+          <div class="font-bold text-2xl">Type</div>
+          <div>
+            
+            <a href="/publication_types/article-journal/">
+            Journal article
+            </a>
+            
+          </div>
+        
+
+        
+          <div class="font-bold text-2xl">Publication</div>
+          <div><em>Journal of Artificial Intelligence Research</em></div>
+        
+
+        
+
+        
+
+        
+
+      </div>
+      
+
+      <div class="prose prose-slate lg:prose-xl dark:prose-invert">
+        <h3 id="problem-combinatorics-math-word-problems">Problem: combinatorics math word problems</h3>
+<p>Combinatorics math word problems sketch in natural language a configuration of a finite set of objects and (possibly) some constraints. The task is to <em>count</em> the number of valid arrangements for the objects. For example:</p>
+<blockquote>
+<p>In how many different ways can the letters in B A N A N A be written?</p></blockquote>
+<blockquote>
+<p>Fourteen construction workers are to be assigned to three different tasks. Seven workers are needed for mixing cement, five for laying bricks,and two for carrying the bricks to the brick layers. In how many different ways can the be assigned to these workers tasks?</p></blockquote>
+<blockquote>
+<p>A shipment of 12 different TVs contains 3 defective ones. In how many ways can a hotel purchase 5 of these TVs and receive at least 2 of the defective ones?</p></blockquote>
+<p>Such problems present two challenges for AI:</p>
+<ol>
+<li><em>NLP</em> - Understanding setting, objects, quantities, and the question provided in natural language.</li>
+<li><em>Automated reasoning</em> - Finding a solving strategy to answer the question from the given information.</li>
+</ol>
+<p>In this paper we consider a <em>two-step approach</em> to solving combinatorics math word problems.
+The two-step approach addresses the two AI challenges in two stages:</p>
+<ol>
+<li>translating the problem expressed in natural language in a formal, machine-understandable language,</li>
+<li>applying automated reasoning methods (solver) to the formalization of the problem to infer the solution.</li>
+</ol>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="flex justify-center	">
+    <div class="w-100" ><img alt="Two steps"
+           src="/publication/coso/twostep.svg"
+           loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>This approach showed more promising results on similar tasks than an <em>end-to-end</em> approach, where a neural network predicts the answer directly from the text. This however showed several limitations:</p>
+<ul>
+<li>Poor solving performance (esp. on a small dataset)<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></li>
+<li>Lacking generalizability <sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></li>
+<li>Lacking explainability <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></li>
+</ul>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="flex justify-center	">
+    <div class="w-100" ><img alt="One step"
+           src="/publication/coso/onestep.svg"
+           loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>In the two-step approach the intermediate language simplifies the task of the neural network by moving the automated reasoning challenge to a logic-based framework, which offers considerably more generalizability and explainability opportunities.
+The challenge in a two-step approach is to have an intermediate formal language as expressive as possible, and at the same time to develop (efficient) inference methods for all possible problems expressible in the formal language.
+Current declarative frameworks either offer languages that are not expressive enough for the class of problems at hand or inference methods that are very inefficient.</p>
+<p>We address these limitations with the following contributions:</p>
+<ol>
+<li>CoLa - a formal language to encode combinatorics math word problems,</li>
+<li>CoSo - a solver to automatically (and efficiently) reason over and solve problems expressed in CoLa.</li>
+</ol>
+<h3 id="cola-modelling-combinatorics-math-word-problems">CoLa: modelling combinatorics math word problems</h3>
+<p>CoLa is a novel declarative language designed to model combinatorics math word problems, for which we also developed efficient reasoning techniques (implemented in the solver CoSo).
+Existing declarative language, such as logic-based languages (Answer Set Programming, Prolog,&hellip;) and constraint modelling languages, do not directly support all of the fundamental primitives to encode combinatorics math word problems. The three primitives necessary to formally encode combinatorics math problems are the following.</p>
+<h4 id="multisets">Multisets</h4>
+<p>Multisets are collections of objects where any object can have a number of identical copies. For example, the letters in B A N A N A are a multiset where A B and N are the distinguishable objects, and there are 3 identical copies of A and 2 of N.
+<img src="mset.svg" alt="Multiply" width="300"/></p>
+<p>In CoLa multisets, in particular the <em>universe</em>, can be declared by enumeration, repeating the labels of identical copies, or by specifying the property characterizing the copies and their number (with a <em>size constraint</em>):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">universe</span> <span class="n">letters</span> <span class="o">=</span> <span class="p">{</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">b</span><span class="p">}</span> <span class="o">%</span> <span class="n">enumeration</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">property a; property n; property b; % distinguishable properties
+</span></span><span class="line"><span class="cl">#a=3; #n=2; #b=1; % identical copies
+</span></span></code></pre></div><p>The keyword <code>labelled</code> can be used to specify a regular set where all elements are unique</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">labelled property workers;
+</span></span><span class="line"><span class="cl">#workers = 14;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">labelled property tvs;
+</span></span><span class="line"><span class="cl">#tvs = 12;
+</span></span><span class="line"><span class="cl">labelled property defective;
+</span></span><span class="line"><span class="cl">#defective = 3;
+</span></span></code></pre></div><h4 id="configurations">Configurations</h4>
+<p>Configurations define how objects are arranged:</p>
+<ul>
+<li>Objects are <em>ordered/unordered</em> (e.g. sets vs. permutations)</li>
+<li>Objects are placed <em>with or without repetition</em> (e.g. multisets vs. sets)</li>
+<li>Objects are arranged in a <em>single or multiple groups</em> (e.g. sets vs. partitions)</li>
+</ul>
+<p>CoLa offers several statements to express the most common configurations, based on the <a href="https://en.wikipedia.org/wiki/Twelvefold_way" target="_blank" rel="noopener">Twelvefold-way</a><sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>.
+These configurations are fundamental because they can be counted quickly with combinatorial rules, such as factorials or binomial coefficients.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">word in [letters] % a permutation of letters: a word
+</span></span></code></pre></div><img src="word.svg" alt="Permutation" width="500"/>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">groups in [{workers}]; % a composition of workers: an ordered partition 
+</span></span></code></pre></div><img src="partition.svg" alt="Partition" width="300"/>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">purchase in {tvs}; % a subset of TVs
+</span></span></code></pre></div><img src="truck.svg" alt="Subset" width="300"/>
+<h4 id="constraints">Constraints</h4>
+<p>Constraints define restrictions on how objects are arranged in the configuration. While natural language can express virtually any kind of constraint, in CoLa we restrict to few constraints that are interesting in terms of efficient resolution of combinatorics math word problems:</p>
+<ul>
+<li>
+<p><em>Size constraints</em> - define the size of configurations, properties and multisets.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#groups=3; % specify the number of groups of workers
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#tvs&amp;defective = 3; % specify the number of tvs that are defective
+</span></span><span class="line"><span class="cl">#purchase = 5; % specify the number of purchased TVs 
+</span></span></code></pre></div></li>
+<li>
+<p><em>Positional constraints</em> - define the properties of objects in specific positions in an ordered configuration.
+<img src="size.svg" alt="Size constraint" width="300"/></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="c1">#groups[1] = 7; % size constraints on the index of the groups of workers</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#groups[2] = 5;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#groups[3] = 2;</span>
+</span></span></code></pre></div></li>
+<li>
+<p><em>Counting constraints</em> - define the number of objects in a configuration or subset with the given property.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#(defective &amp; purchase) &gt;= 2;
+</span></span></code></pre></div></li>
+</ul>
+<img src="counting.svg" alt="Counting constraint" width="300"/>
+<h3 id="coso-reasoning-over-combinatorics-math-word-problems">CoSo: reasoning over combinatorics math word problems</h3>
+<p>CoSo implements lifted reasoning techniques for combinatorics math word problems. Lifted reasoning exploits high-level symmetries and the interchangeability of objects to efficiently count the number of admissible assignments for a set of variables.
+In this paper we implement the principles of <em>probabilistic</em> lifted reasoning<sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup> in the context of <em>counting constraint satisfaction problems</em> (#CSPs).</p>
+<p>Existing declarative frameworks usually resort to <em>propositional</em> reasoning, that is, enumeration of the solutions or grounding, namely replacing each variable with all possible individual objects in its domain. Therefore, they can be very inefficient on combinatorics math word problems, where the number of solutions is usually exponential in the number of objects.</p>
+<p>CoSo can solve these problems efficiently by applying the following lifted reasoning principles:</p>
+<ol>
+<li>Multiplication - multiply the solution of two <em>independent</em> subproblems to lift the count of their combinations.
+<img src="mul.svg" alt="Multiply" width="300"/></li>
+<li>Splitting - decompose a problem into subproblems such that the multiplication principle is applicable.
+<img src="split.svg" alt="Split" width="200"/></li>
+<li>Propositionalization - reason on individual objects when it is not possible to group them.
+<img src="prop.svg" alt="Propositionalization" width="300"/></li>
+<li>Exchangeability - account for any invariance under permutation of the variables.
+<img src="exch.svg" alt="Exchangeability" width="300"/></li>
+</ol>
+<p>CoSo applies these principles to decompose a problem in subproblems where the common combinatorial counting rules for the base configurations are applicable.</p>
+<p>With experiments on a real-world dataset and synthetic benchmarks we show that the implementation of these principles can significantly speed-up the computation of the solution of combinatorics math world problems compared to traditional declarative frameworks.</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p><a href="/publication/dblp-confemnlp-suster-ftkdrd-21/">S.Suster, P.Fivez, P.Totis, A.Kimmig, J.Davis, L. de Raedt, W.Daelemans, &ldquo;Mapping probability word problems to executable representations&rdquo; EMNLP 2021</a>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://aclanthology.org/2021.naacl-main.168/" target="_blank" rel="noopener">A.Patel, S.Bhattamishra, and N.Goyal, &ldquo;Are NLP Models really able to Solve Simple Math Word Problems?&rdquo;, NAACL 2021</a>&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p><a href="https://openreview.net/pdf?id=H1gR5iR5FX" target="_blank" rel="noopener">D.Saxton E. Grefenstette F. Hill P. Kohli, &ldquo;Analysing Mathematical Reasoning Abilities of Neural Models&rdquo;, ICLR 2019</a>&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4">
+<p><a href="https://math.mit.edu/~rstan/ec/" target="_blank" rel="noopener">R.Stanley, &ldquo;Enumerative combinatorics&rdquo;, 2012, Cambridge University Press, New York.</a>&#160;<a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5">
+<p><a href="https://mitpress.mit.edu/9780262542593/an-introduction-to-lifted-probabilistic-inference/" target="_blank" rel="noopener">G. Van den Broeck, K. Kersting, and S. Natarajan, &ldquo;An Introduction to
+Lifted Probabilistic Inference&rdquo;, 2021, The MIT Press.</a>&#160;<a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+      </div>
+
+      
+  <time class="mt-12 mb-8 block text-xs text-gray-500 ltr:text-right rtl:text-left dark:text-gray-400" datetime="2022-11-09T15:45:40.000Z">
+    <span>Last updated on</span>
+    Nov 9, 2022</time>
+
+      <div class="container mx-auto prose prose-slate lg:prose-xl dark:prose-invert mt-5">
+        
+        <div class="max-w-prose print:hidden">
+  
+  
+
+  
+<div class="flex justify-center">
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/krr/">KRR</a>
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/journal/">Journal</a>
+  
+</div>
+
+
+  
+<section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
+  
+
+  
+  
+  
+  
+  
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A41063%2Fpublication%2Fcoso%2F&amp;text=Lifted&#43;Reasoning&#43;for&#43;Combinatorial&#43;Counting"
+    title="X"
+    aria-label="X"
+    id="share-link-x"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </a>
+  
+
+  
+  
+  
+  
+  
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Flocalhost%3A41063%2Fpublication%2Fcoso%2F&amp;t=Lifted&#43;Reasoning&#43;for&#43;Combinatorial&#43;Counting"
+    title="Facebook"
+    aria-label="Facebook"
+    id="share-link-facebook"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+  </a>
+  
+
+  
+  
+  
+  
+  
+  
+    
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="mailto:?subject=Lifted%20Reasoning%20for%20Combinatorial%20Counting&amp;body=http%3A%2F%2Flocalhost%3A41063%2Fpublication%2Fcoso%2F"
+    title="Email"
+    aria-label="Email"
+    id="share-link-email"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M16.5 12a4.5 4.5 0 1 1-9 0a4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25"/></svg>
+  </a>
+  
+
+  
+  
+  
+  
+  
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="https://www.linkedin.com/shareArticle?url=http%3A%2F%2Flocalhost%3A41063%2Fpublication%2Fcoso%2F&amp;title=Lifted&#43;Reasoning&#43;for&#43;Combinatorial&#43;Counting"
+    title="LinkedIn"
+    aria-label="LinkedIn"
+    id="share-link-linkedin"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+  </a>
+  
+
+  
+  
+  
+  
+  
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="whatsapp://send?text=Lifted&#43;Reasoning&#43;for&#43;Combinatorial&#43;Counting%20http%3A%2F%2Flocalhost%3A41063%2Fpublication%2Fcoso%2F"
+    title="WhatsApp"
+    aria-label="WhatsApp"
+    id="share-link-whatsapp"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="m187.58 144.84-32-16a8 8 0 0 0-8 .5l-14.69 9.8a40.55 40.55 0 0 1-16-16l9.8-14.69a8 8 0 0 0 .5-8l-16-32A8 8 0 0 0 104 64a40 40 0 0 0-40 40 88.1 88.1 0 0 0 88 88 40 40 0 0 0 40-40 8 8 0 0 0-4.42-7.16ZM152 176a72.08 72.08 0 0 1-72-72 24 24 0 0 1 19.29-23.54l11.48 23L101 118a8 8 0 0 0-.73 7.51 56.47 56.47 0 0 0 30.15 30.15A8 8 0 0 0 138 155l14.61-9.74 23 11.48A24 24 0 0 1 152 176ZM128 24a104 104 0 0 0-91.82 152.88l-11.35 34.05a16 16 0 0 0 20.24 20.24l34.05-11.35A104 104 0 1 0 128 24Zm0 192a87.87 87.87 0 0 1-44.06-11.81 8 8 0 0 0-6.54-.67L40 216l12.47-37.4a8 8 0 0 0-.66-6.54A88 88 0 1 1 128 216Z"/></svg>
+  </a>
+  
+</section>
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+    
+
+
+
+
+  
+    
+
+
+
+
+  
+    
+
+
+
+
+  
+    
+
+
+
+
+  
+
+
+
+
+  
+  
+    
+    
+    
+      
+      
+    
+<div class="pt-1 no-prose w-full">
+  <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+  <div class="flex flex-col md:flex-row flex-nowrap justify-between gap-5 pt-2">
+    <div class="">
+      
+        <a class="group flex no-underline" href="/publication/dblp-journalscorrabs-2308-15891/">
+          <span
+            class="mt-[-0.3rem] me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+          ><span class="ltr:inline rtl:hidden">&larr;</span></span>
+          <span class="flex flex-col">
+            <span
+              class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+            >Understanding ProbLog as Probabilistic Argumentation</span>
+            <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+              
+                Jan 1, 2023
+              
+            </span>
+          </span>
+        </a>
+      
+    </div>
+    <div class="">
+      
+        <a class="group flex text-right no-underline" href="/publication/dblp-journalstplp-kiesel-tk-22/">
+          <span class="flex flex-col">
+            <span
+              class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+            >Efficient Knowledge Compilation Beyond Weighted Model Counting</span
+            >
+            <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+              
+                Jan 1, 2022
+              
+            </span>
+          </span>
+          <span
+            class="mt-[-0.3rem] ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+          ><span class="ltr:inline">&rarr;</span></span>
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+  
+
+
+  
+
+
+
+</div>
+
+      </div>
+
+    </main>
+  </article>
+</div>
+
+    </div>
+    <div class="page-footer">
+      <footer class="container mx-auto flex flex-col justify-items-center text-sm leading-6 mt-24 mb-4 text-slate-700 dark:text-slate-200">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+    
+  
+  
+    
+  
+
+  
+
+  
+  <p class="powered-by text-center">
+    © 2025 Me. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank">CC BY NC ND 4.0</a>
+  </p>
+  
+
+  <p class="powered-by footer-license-icons">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank" aria-label="Creative Commons">
+      <i class="fab fa-creative-commons fa-2x" aria-hidden="true"></i>
+      <i class="fab fa-creative-commons-by fa-2x" aria-hidden="true"></i>
+      
+        <i class="fab fa-creative-commons-nc fa-2x" aria-hidden="true"></i>
+      
+      
+        <i class="fab fa-creative-commons-nd fa-2x" aria-hidden="true"></i>
+      
+    </a>
+  </p>
+
+
+
+
+
+  <p class="powered-by text-center">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://hugoblox.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Hugo Blox Builder</a> — the free, <a href="https://github.com/HugoBlox/hugo-blox-builder" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+
+</footer>
+
+    </div>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,58 @@
+{{ define "main" }}
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Page title -->
+    <h1 class="text-5xl font-bold mb-6 text-center">{{ .Title }}</h1>
+
+    <!-- Filter buttons -->
+    <div id="filters" class="mb-6 flex flex-wrap justify-center gap-2 text-sm">
+      <button
+        class="filter-btn px-3 py-1 rounded-md border border-primary-700 bg-primary-700 text-white
+              hover:bg-primary-800 hover:text-white focus:z-10 focus:ring-4 focus:outline-none focus:ring-primary-300
+              dark:border-primary-500 dark:bg-primary-500 dark:text-white dark:hover:bg-primary-400 dark:focus:ring-primary-700"
+        data-filter="all">All</button>
+
+      {{ $filters := slice "Conference" "Journal" "NLP" "KRR" "Argumentation" "PLP" }}
+      {{ range $filters }}
+        <button
+          class="filter-btn px-3 py-1 rounded-md border border-gray-300 bg-white text-gray-900
+                hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200
+                dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+          data-filter="{{ . }}">{{ . }}</button>
+      {{ end }}
+    </div>    
+
+
+
+    <!-- Publications list -->
+    <div id="publication-list" class="space-y-6">
+      {{ range .Pages.ByDate.Reverse }}
+        {{ partial "views/compact--item.html" (dict "item" .) }}
+      {{ end }}
+    </div>
+
+  </div>
+
+  <!-- Filtering Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const buttons = document.querySelectorAll('.filter-btn');
+      const items = document.querySelectorAll('.publication-item');
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.dataset.filter.toLowerCase();
+
+          items.forEach(item => {
+            const tags = item.dataset.tags.toLowerCase();
+
+            if (filter === 'all' || tags.includes(filter)) {
+              item.classList.remove('hidden');
+            } else {
+              item.classList.add('hidden');
+            }
+          });
+        });
+      });
+    });
+  </script>
+{{ end }}

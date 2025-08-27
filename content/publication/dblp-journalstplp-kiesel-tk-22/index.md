@@ -14,6 +14,7 @@ date: '2022-01-01'
 lastmod: 2022-11-04T12:29:19+01:00
 featured: false
 draft: false
+show_breadcrumb: true
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
@@ -30,13 +31,12 @@ image:
 #   Otherwise, set `projects = []`.
 projects: []
 publishDate: '2022-11-04T11:29:19.637273Z'
-publication_types:
-- '2'
+publication_types: ["article-journal"]
 abstract: 'Quantitative extensions of logic programming often require the solution of so called second level inference tasks, i.e., problems that involve a third operation, such as maximization or normalization, on top of addition and multiplication, and thus go beyond the well-known weighted or algebraic model counting setting of probabilistic logic programming under the distribution semantics. We introduce Second Level Algebraic Model Counting (2AMC) as a generic framework for this kind of problems. As 2AMC is to (algebraic) model counting what forall-exists-SAT is to propositional satisfiability, it is notoriously hard to solve. First level techniques based on Knowledge Compilation (KC) have been adapted for specific 2AMC instances by imposing variable order constraints on the resulting circuit. However, those constraints can severely increase the circuit size and thus decrease the efficiency of such approaches. We show that we can exploit the logical structure of a 2AMC problem to omit parts of these constraints, thus limiting the negative effect. Furthermore, we introduce and implement a strategy to generate a sufficient set of constraints statically, with a priori guarantees for the performance of KC. Our empirical evaluation on several benchmarks and tasks confirms that our theoretical results can translate into more efficient solving in practice.'
 summary: "We introduce second level algebraic model counting (2AMC) problems, a framework generalizing several probabilistic inference task. We present a novel Knowledge Compilation technique to address the increased complexity of a 2AMC task with respect to first-level AMC problems."
 
 publication: '*Theory and Practice of Logic Programming*'
-publication_short: "*TPLP*"
+publication_short: "*TPLP 2022*"
 doi: 10.1017/S147106842200014X
 links:
 - name: URL

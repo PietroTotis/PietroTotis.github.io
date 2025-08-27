@@ -1,0 +1,56 @@
+:root {
+  --color-primary-50:  59 66 80;   /* Dark Gray */
+  --color-primary-100:  178 201 226;  /*light background icon, highlight 2 */
+  --color-primary-200: 178 201 226;  /* light highlight 1 */
+  --color-primary-300: 94 129 172;/* dark text, icons line*/
+  --color-primary-400: 129 161 193;/* dark refs */
+  --color-primary-500: 136 192 208;/* Cyan */
+  --color-primary-600: 129 161 193;/* light refs */
+  --color-primary-700: 94 129 172; /* light text */
+  --color-primary-800: 59 66 80;/* dark highlight 1, light icons line */
+  --color-primary-900: 46 52 64;/* dark background icons, highlight 2 */
+}
+
+
+
+body { font-size: 120%; }
+
+.bio-text {
+  font-size: 125%; /* Your desired font size */
+}
+
+#section-resume-biography-3 {
+ padding: 5rem 0 3rem 0;
+}
+
+.text-sm {
+  font-size: 120%; /* Your desired font size */
+}
+
+/* More specific selector */
+div.max-w-screen-xl {
+  max-width: 1500px !important;
+}
+
+/* details {
+  width: 50ch;
+  max-width: 50ch;
+  overflow-wrap: break-word;
+  word-break: break-word;
+} */
+/* assets/css/custom.css */
+
+/*
+ * Prevent the experience/education section from jumping on desktop
+ * when <details> blocks are expanded, while maintaining full
+ * responsiveness on mobile and tablet.
+ */
+
+/* Apply the max-width constraint ONLY on screens 768px and wider */
+@media (min-width: 768px) {
+  #experience > .flex.items-center > .flex {
+    /* You can adjust this value. 800px or 900px are good starting points for desktops. */
+    max-width: 768px; 
+    width: 100%;
+  }
+}
